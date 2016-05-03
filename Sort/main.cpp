@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <ctime>
 #include <cstdlib>
+
 void swap(int& a,int& b){
     int temp=a;
     a=b;
@@ -9,6 +10,8 @@ void swap(int& a,int& b){
 void mergeSort(int array[],int n){
 }
 void shellSort(int array[],int n){
+    for ( int i=0;i<n ;i++ ) {
+    }
 }
 void heapSort(int array[],int n){
 }
@@ -22,7 +25,7 @@ void insertSort(int array[],int n){
             }
         }
     }
-}
+} 
 void selectionSort(int array[],int n){
     for(int i=0;i<n-1;i++){
         int minIndex=i+1;
