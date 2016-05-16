@@ -6,6 +6,9 @@ void swap(int& a,int& b){
     a=b;
     b=temp;
 }
+/*
+ *mergeSort
+ */
 void mergeSort(int array[],int n){
 }
 /*
@@ -53,6 +56,9 @@ void insertSort(int array[],int n){
         }
     }
 }
+/*
+ *selectionSort
+ */
 void selectionSort(int array[],int n){
     for(int i=0;i<n-1;i++){
         int minIndex=i+1;
@@ -64,6 +70,9 @@ void selectionSort(int array[],int n){
         swap(array[i],array[minIndex]);
     }
 }
+/*
+ *bubbleSort
+ */
 void bubbleSort(int array[],int n){
     for(int i=0;i<n-1;i++){
         for(int j=i+1;j<n;j++){
