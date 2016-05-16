@@ -12,11 +12,6 @@ void swap(int& a,int& b){
 void mergeSort(int array[],int n){
 }
 /*
- *shellSort
- */
-void shellSort(int array[],int n){
-}
-/*
  *heapSort
  */
 void heapAdjust(int array[],int s,int length){
@@ -45,6 +40,25 @@ void heapSort(int array[],int n){
     for(int i=n-1;i>=0;i--){
         swap(array[0],array[i]);
         heapAdjust(array,0,i);
+    }
+}
+/*
+ *shellSort
+ */
+void shellInsertSort(int array[],int n,int dk){
+    for(int i=dk;i<n;i++){
+        for(int j=i;j>0;j=j-dk){
+            if(array[j]<array[j-dk]){
+                swap(array[j],array[j-dk]);
+            }else{
+                break;
+            }
+        }
+    }
+}
+void shellSort(int array[],int n){
+    for(int dk=n/2;dk>=1;dk=dk/2){
+        shellInsertSort(array,n,dk);
     }
 }
 /*
@@ -105,6 +119,6 @@ int* creatRandomArray(int min,int max,int length){
 int main(){
     int* array=creatRandomArray(0,100,10);
     printArray(array,10);
-    heapSort(array,10);
+    shellSort(array,10);
     printArray(array,10);
 }
