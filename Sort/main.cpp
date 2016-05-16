@@ -41,6 +41,11 @@ void buildHeap(int array[],int length){
     }
 }
 void heapSort(int array[],int n){
+    buildHeap(array,n);
+    for(int i=n-1;i>=0;i--){
+        swap(array[0],array[i]);
+        heapAdjust(array,0,i);
+    }
 }
 /*
  *insertSort
@@ -100,6 +105,6 @@ int* creatRandomArray(int min,int max,int length){
 int main(){
     int* array=creatRandomArray(0,100,10);
     printArray(array,10);
-    buildHeap(array,10);
+    heapSort(array,10);
     printArray(array,10);
 }
