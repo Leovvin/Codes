@@ -16,7 +16,6 @@ void mergeSort(int array[],int n){
  */
 void heapAdjust(int array[],int s,int length){
     int child=2*s+1;
-    int tmp=array[s];
     while(child<length){
         if(child+1<length && array[child]<array[child+1]){
             child++;
@@ -116,9 +115,11 @@ int* creatRandomArray(int min,int max,int length){
     }
     return p;
 }
+void (*sort)(int array[],int n);
 int main(){
     int* array=creatRandomArray(0,100,10);
     printArray(array,10);
-    shellSort(array,10);
+    sort=heapSort;
+    sort(array,10);
     printArray(array,10);
 }
