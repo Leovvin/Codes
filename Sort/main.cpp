@@ -10,7 +10,39 @@ void swap(int& a,int& b){
 /*
  *mergeSort
  */
+void merge(int array[],int left,int middle,int right){
+    int* temp=(int*)malloc(sizeof(int)*10);
+    int i=left,j=middle+1,k=left;
+    while(i<=middle||j<=right){
+        if(array[i]<array[j]){
+            temp[k++]=array[i++];
+        }else{
+            temp[k++]=array[j++];
+        }
+    }
+    if(i>middle){
+        while(j<=right){
+            temp[k++]=array[j++];
+        }
+    }else{
+        while(i<=middle){
+            temp[k++]=array[i++];
+        }
+    }
+    for(int p=left;p<=right;p++){
+        array[p]=temp[p];
+    }
+}
+void _mergeSort(int array[],int left,int right){
+    if(left<right){
+        int middle=(left+right)/2;
+        _mergeSort(array,left,middle);
+        _mergeSort(array,middle+1,right);
+        merge(array,left,middle,right);
+    } 
+}
 void mergeSort(int array[],int n){
+    _mergeSort(array,0,n);
 }
 /*
  *heapSort
@@ -118,9 +150,12 @@ int* creatRandomArray(int min,int max,int length){
 }
 void (*sort)(int array[],int n);
 int main(){
-    int* array=creatRandomArray(0,100,10);
-    printArray(array,10);
-    sort=shellSort;
-    sort(array,10);
-    printArray(array,10);
+//    int* array=creatRandomArray(0,100,10);
+//    printArray(array,10);
+//    sort=mergeSort;
+//    sort(array,10);
+//    printArray(array,10);
+    int b[]={1,3,5,2,4,6};
+    merge(b,0,2,5);
+    printArray(b,6);
 }
