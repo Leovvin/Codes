@@ -19,21 +19,6 @@ int* creatRandomArray(int min,int max,int length){
     }
     return p;
 }
-int* buildTempArray(int min,int max,int length){
-    int* p;
-    p=(int*)malloc(sizeof(int)*length);
-    p[0]=1;
-    p[1]=3;
-    p[2]=5;
-    p[3]=7;
-    p[4]=9;
-    p[5]=2;
-    p[6]=4;
-    p[7]=6;
-    p[8]=8;
-    p[9]=10;
-    return p;
-}
 void (*sort)(int array[],int n);
 int* (*buildArray)(int min,int max,int length);
 int main(){
