@@ -1,12 +1,13 @@
 #include <cstdlib>
+#include "printArray.h"
 
 /*
  *mergeSort
  */
 void merge(int array[],int left,int middle,int right){
-    int* temp=(int*)malloc(sizeof(int)*10);
+    int* temp=(int*)malloc(sizeof(int)*(right-left+1));
     int i=left,j=middle+1,k=left;
-    while(i<=middle||j<=right){
+    while(i<=middle && j<=right){
         if(array[i]<array[j]){
             temp[k++]=array[i++];
         }else{
@@ -25,6 +26,7 @@ void merge(int array[],int left,int middle,int right){
     for(int p=left;p<=right;p++){
         array[p]=temp[p];
     }
+    free(temp);
 }
 void _mergeSort(int array[],int left,int right){
     if(left<right){
@@ -35,6 +37,6 @@ void _mergeSort(int array[],int left,int right){
     } 
 }
 void mergeSort(int array[],int n){
-    _mergeSort(array,0,n);
+    _mergeSort(array,0,n-1);
 }
 

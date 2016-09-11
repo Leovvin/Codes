@@ -1,2 +1,2 @@
 edit:
-	g++ main.cpp bubbleSort.cpp swap.cpp
+	g++ main.cpp bubbleSort.cpp swap.cpp mergeSort.cpp printArray.cpp
