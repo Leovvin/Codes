@@ -1,2 +1,2 @@
-edit:
-	g++ main.cpp bubbleSort.cpp swap.cpp
+default:
+	g++ -o a.out main.cpp bubbleSort.cpp swap.cpp
