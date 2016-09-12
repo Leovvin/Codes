@@ -28,7 +28,7 @@ void (*sort)(int array[],int n);
 int main(){
     int* array=creatRandomArray(0,100,10);
     printArray(array,10);
-    sort=bubbleSort;
+    sort=mergeSort;
     sort(array,10);
     printArray(array,10);
 }
