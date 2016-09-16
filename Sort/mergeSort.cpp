@@ -1,11 +1,10 @@
 #include <cstdlib>
-#include "printArray.h"
 
 /*
  *mergeSort
  */
 void merge(int array[],int left,int middle,int right){
-    int* temp=(int*)malloc(sizeof(int)*(right-left+1));
+    int* temp=(int*)malloc(sizeof(int)*(right));
     int i=left,j=middle+1,k=left;
     while(i<=middle && j<=right){
         if(array[i]<array[j]){
