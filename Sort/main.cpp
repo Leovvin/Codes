@@ -9,6 +9,7 @@
 #include "shellSort.h"
 #include "selectionSort.h"
 #include "bubbleSort.h"
+#include "quickSort.h"
 
 int* creatRandomArray(int min,int max,int length){
     int* p;
@@ -25,7 +26,7 @@ int main(){
     buildArray=creatRandomArray;
     int* array=buildArray(0,100,10);
     printArray(array,10);
-    sort=heapSort;
+    sort=quickSort;
     sort(array,10);
     printArray(array,10);
 }

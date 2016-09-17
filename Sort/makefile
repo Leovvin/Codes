@@ -1,4 +1,4 @@
 default:
-	g++ -g -o sort.o main.cpp bubbleSort.cpp swap.cpp mergeSort.cpp printArray.cpp heapSort.cpp insertSort.cpp shellSort.cpp
+	g++ -g -o sort.o main.cpp bubbleSort.cpp swap.cpp mergeSort.cpp printArray.cpp heapSort.cpp insertSort.cpp shellSort.cpp quickSort.cpp
 clean:
 	rm sort.o
