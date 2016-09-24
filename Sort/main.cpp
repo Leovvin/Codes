@@ -27,7 +27,7 @@ int main(){
     buildArray=creatRandomArray;
     int* array=buildArray(0,100,10);
     printArray(array,10);
-    sort=redixSort;
+    sort=mergeSort;
     sort(array,10);
     printArray(array,10);
 }
