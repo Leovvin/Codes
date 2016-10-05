@@ -1,2 +1,6 @@
 test
 .idea
+*.out
+*.o
+*.exe
+*.swp
