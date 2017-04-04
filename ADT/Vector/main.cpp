@@ -6,10 +6,7 @@
 #include "insert.h"
 #include "removeinterval.h"
 #include "traverse.h"
-template <typename T>
-void (*visit)(T &t){
-   std::cout << t << std::endl;
-}
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
     Vector<int> v;
@@ -18,7 +15,6 @@ int main() {
     v.insert(1,2);
     v.insert(2,2);
     v.insert(3,2);
-    v.traverse(visit);
 
 
     return 0;
