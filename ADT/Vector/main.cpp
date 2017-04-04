@@ -1,12 +1,25 @@
 #include <iostream>
 #include "Vector.h"
+#include "Constructor_by_copying.h"
 #include "expand.h"
+#include "shrink.h"
 #include "insert.h"
-
+#include "removeinterval.h"
+#include "traverse.h"
+template <typename T>
+void (*visit)(T &t){
+   std::cout << t << std::endl;
+}
 int main() {
     std::cout << "Hello, World!" << std::endl;
     Vector<int> v;
-    v.insert(0,1);
     std::cout << v.size() << std::endl;
+    v.insert(0,1);
+    v.insert(1,2);
+    v.insert(2,2);
+    v.insert(3,2);
+    v.traverse(visit);
+
+
     return 0;
 }
