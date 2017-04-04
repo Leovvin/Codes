@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g   CMakeFiles/Vector.dir/main.cpp.o CMakeFiles/Vector.dir/insert.cpp.o CMakeFiles/Vector.dir/expand.cpp.o  -o Vector 

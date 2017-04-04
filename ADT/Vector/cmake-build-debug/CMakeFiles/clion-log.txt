@@ -1,0 +1,4 @@
+/home/levon/share/clion-2017.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/levon/Codes/ADT/Vector
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/levon/Codes/ADT/Vector/cmake-build-debug
