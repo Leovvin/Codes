@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/levon/Codes/ADT/Vector/expand.cpp" "/home/levon/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/expand.cpp.o"
-  "/home/levon/Codes/ADT/Vector/insert.cpp" "/home/levon/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/insert.cpp.o"
-  "/home/levon/Codes/ADT/Vector/main.cpp" "/home/levon/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/main.cpp.o"
+  "/Users/levon/src/Codes/ADT/Vector/expand.cpp" "/Users/levon/src/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/expand.cpp.o"
+  "/Users/levon/src/Codes/ADT/Vector/insert.cpp" "/Users/levon/src/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/insert.cpp.o"
+  "/Users/levon/src/Codes/ADT/Vector/main.cpp" "/Users/levon/src/Codes/ADT/Vector/cmake-build-debug/CMakeFiles/Vector.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
