@@ -4,7 +4,6 @@
 
 #ifndef VECTOR_EXPAND_H
 #define VECTOR_EXPAND_H
-#include "Vector.h"
 template <typename T> //元素类型
 void Vector<T>::expand() {
     if (_size<_capacity)return;

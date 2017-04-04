@@ -4,7 +4,6 @@
 
 #ifndef VECTOR_INSERT_H
 #define VECTOR_INSERT_H
-#include "Vector.h"
 template <typename T> //元素类型
 Rank Vector<T>::insert(Rank r, T const &e) {
     expand();
