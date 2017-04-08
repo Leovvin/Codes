@@ -7,6 +7,9 @@
 #include "removeinterval.h"
 #include "traverse.h"
 
+void visit(int & i){
+    std::cout << i << std::endl;
+}
 int main() {
     std::cout << "Hello, World!" << std::endl;
     Vector<int> v;
@@ -15,7 +18,8 @@ int main() {
     v.insert(1,2);
     v.insert(2,2);
     v.insert(3,2);
-
+    
+    v.traverse(visit);
 
     return 0;
 }
