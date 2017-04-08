@@ -6,10 +6,10 @@
 #define VECTOR_DISORDERED_H
 template <typename T>
 int Vector<T>::disordered() const {
-    int k=0;
+    int n=0;
     for (int i = 1; i <_size ; ++i) {
-        if (_elem[i-1]>_elem[i]) k++;
+        n+=(_elem[i-1]>_elem[i]);
     }
-    return k;
+    return n;
 }
 #endif //VECTOR_DISORDERED_H
