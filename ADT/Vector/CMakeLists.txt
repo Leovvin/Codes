@@ -3,5 +3,5 @@ project(Vector)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(SOURCE_FILES Vector.h Constructor_by_copying.h insert.h expand.h main.cpp removeinterval.h shrink.h traverse.h remove.h disordered.h bracket.h)
+set(SOURCE_FILES Vector.h Constructor_by_copying.h insert.h expand.h main.cpp removeinterval.h shrink.h traverse.h remove.h disordered.h bracket.h find.h deduplicate.h)
 add_executable(Vector ${SOURCE_FILES})
