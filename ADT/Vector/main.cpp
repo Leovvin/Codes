@@ -12,6 +12,10 @@
 #include "find.h"
 #include "deduplicate.h"
 #include "uniquify.h"
+#include "search_binary.h"
+#include "search_fibonaccian.h"
+#include "search.h"
+
 
 void visit(int & i){
     std::cout << i << std::endl;
@@ -25,7 +29,8 @@ int main() {
     v.insert(1,2);
     v.insert(2,2);
     v.insert(3,4);
-    v.deduplicate();
+//    v.deduplicate();
     v.traverse(visit);
+    std::cout << v.search(4,0,4) << std::endl;
     return 0;
 }
