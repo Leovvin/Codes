@@ -10,20 +10,18 @@
 #include <arpa/inet.h>
 bool Serve(int client_socket){
     while(true){
-        int length;
+        int length=1024;
         char *msg;
-        if(read(client_socket,&length,sizeof(length))==0){
-            return true;
-        }
         msg=new char[length];
         read(client_socket,msg,length);
-        printf("%s/0",msg);
-        if(!strcmp(msg,"quit")){
+        printf("%s",msg);
+        if(!strcmp(msg,"quit\n")){
             delete[] msg,msg=NULL;
             return false;
         }else{
             char hello[]="hello,nihao?\n";
             write(client_socket,hello,strlen(hello));
+
             delete[] msg,msg=NULL;
         }
     }

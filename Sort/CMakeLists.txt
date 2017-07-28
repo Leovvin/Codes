@@ -24,6 +24,6 @@ set(SOURCE_FILES
     shellSort.cpp
     shellSort.h
     swap.cpp
-    swap.h)
+    swap.h mergeSort1.h mergeSort1.cpp)
 
 add_executable(Sort ${SOURCE_FILES})

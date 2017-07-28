@@ -1,0 +1,3 @@
+/home/hel39/src/Codes/WebServer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/hel39/src/Codes/WebServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/hel39/src/Codes/WebServer/cmake-build-debug/CMakeFiles/WebServer.dir
