@@ -3,9 +3,6 @@
 #include <errno.h>
 #include <string.h>
 #include <netdb.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/utsname.h>
@@ -37,19 +34,23 @@ void createContent(char* content){
 
     return;
 }
-bool Serve(int client_socket){
+bool serve(int client_socket){
     while(true){
         int length=1024;
         char *msg;
         msg=new char[length];
-        read(client_socket,msg,length);
+        if(read(client_socket,msg,sizeof(char)*length)==-1){
+            return false;
+        }
         printf("%s",msg);
         if(!strcmp(msg,"quit\n")){
             delete[] msg,msg=NULL;
             return false;
         }else{
             delete[] msg,msg=NULL;
-            char head[]="HTTP/1.1 200 OK\r\nContent-Type:text/html;charset=utf8\r\n";
+            char head[1024];
+            strcpy(head,"HTTP/1.1 200 OK\r\nContent-Type:text/html;charset=utf8\r\n");
+//            strcat(head,"Connection:keep-alive\r\nKeep-Alive:timeout=2\r\n");
             char content[1024];
             char response[1024];
             createContent(content);
@@ -85,7 +86,7 @@ int main(int argc,char * const argv[]){
         if((newfd=accept(sockfd,(struct sockaddr *)(&client_addr),&sin_size))==-1){
             fprintf(stderr,"accept error:%s\n\a",strerror(errno));
         }
-        Serve(newfd);
+        serve(newfd);
         close(newfd);
     }
     close(sockfd);
