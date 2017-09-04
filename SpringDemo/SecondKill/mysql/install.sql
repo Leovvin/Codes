@@ -3,4 +3,4 @@ use SecondKill;
 drop table if exists user;
 create table user(id bigint,name varchar(20));
 drop table if exists goods;
-create table goods(id bigint,name varchar(20),num int,price double);
+create table goods(id bigint,name varchar(20),num int,price double,primary key(id));
