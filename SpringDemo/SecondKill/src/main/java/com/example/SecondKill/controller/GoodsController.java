@@ -19,16 +19,22 @@ public class GoodsController {
     Goods get(@RequestParam(value="id", defaultValue="1") long id){
         return goodsRepository.findOne(id);
     }
+
     @GetMapping("/all")
     @ResponseBody
     Iterable<Goods> getAll(){
         return goodsRepository.findAll();
     }
+
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     Goods put(@RequestParam(value="id", defaultValue="1") long id,Goods goods){
-        System.out.println(Thread.currentThread().getId());
-        return goodsRepository.findOne(id);
+        return goodsRepository.save(goods);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    Goods add(Goods goods){
+        return goodsRepository.save(goods);
+    }
 }
