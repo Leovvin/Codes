@@ -1,11 +1,14 @@
 package com.example.SecondKill.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Goods {
+
     @Id
+    @GeneratedValue
     long id;
     String name;
     int num;
