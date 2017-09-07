@@ -1,11 +1,13 @@
 package com.example.SecondKill.entity;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Goods {
+public class Goods extends AbstractPersistable {
 
     @Id
     @GeneratedValue
