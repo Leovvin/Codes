@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -35,12 +37,9 @@ public class GoodsController {
         return goodsRepository.save(goods);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
-    Goods add(Goods goods) {
-        if (Objects.isNull(goods.getName())||goods.getName().equals("")){
-            throw new RuntimeException("goods is empty");
-        }
+    Goods add(@RequestBody Goods goods) {
         return goodsRepository.save(goods);
     }
 }
