@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Goods extends AbstractPersistable {
+public class Goods {
 
     @Id
     @GeneratedValue
