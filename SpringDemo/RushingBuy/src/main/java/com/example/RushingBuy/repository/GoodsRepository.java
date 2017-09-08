@@ -1,6 +1,6 @@
-package com.example.SecondKill.repository;
+package com.example.RushingBuy.repository;
 
-import com.example.SecondKill.entity.Goods;
+import com.example.RushingBuy.entity.Goods;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

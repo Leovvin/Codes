@@ -1,4 +1,4 @@
-package com.example.SecondKill.entity;
+package com.example.RushingBuy.entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 

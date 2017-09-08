@@ -1,15 +1,9 @@
-package com.example.SecondKill.controller;
+package com.example.RushingBuy.controller;
 
-import com.example.SecondKill.entity.Goods;
-import com.example.SecondKill.repository.GoodsRepository;
+import com.example.RushingBuy.entity.Goods;
+import com.example.RushingBuy.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Map;
-import java.util.Objects;
 
 
 @RestController

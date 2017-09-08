@@ -1,4 +1,4 @@
-package com.example.SecondKill;
+package com.example.RushingBuy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
