@@ -2,16 +2,14 @@ package com.example.RushingBuy.entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Goods {
+public class Goods extends AbstractPersistable<Long> {
 
     @Id
-    @GeneratedValue
-    long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     String name;
     int num;
 
