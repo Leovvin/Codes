@@ -12,6 +12,7 @@ public class Goods extends AbstractPersistable<Long> {
     Long id;
     String name;
     int num;
+    double price;
 
     public String getName() {
         return name;
@@ -25,6 +26,15 @@ public class Goods extends AbstractPersistable<Long> {
         return price;
     }
 
-    double price;
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

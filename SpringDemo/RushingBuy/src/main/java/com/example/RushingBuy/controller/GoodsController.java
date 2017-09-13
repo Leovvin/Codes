@@ -31,7 +31,7 @@ public class GoodsController {
         return goodsRepository.save(goods);
     }
 
-    @RequestMapping(method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     Goods add(@RequestBody Goods goods) {
         return goodsRepository.saveAndFlush(goods);
