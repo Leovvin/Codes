@@ -3,13 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="application/javascript">
+        $.fn.serializeObject = function()
+        {
+           var o = {};
+           var a = this.serializeArray();
+           $.each(a, function() {
+               if (o[this.name]) {
+                   if (!o[this.name].push) {
+                       o[this.name] = [o[this.name]];
+                   }
+                   o[this.name].push(this.value || '');
+               } else {
+                   o[this.name] = this.value || '';
+               }
+           });
+           return o;
+        };
+        function onClick(){
+                //var data = $("#form1").serializeArray(); //自动将form表单封装成json
+                //alert(JSON.stringify(data));
+                var jsonuserinfo = $('#form1').serializeObject();
+                $.post({
+                    type:"POST",
+                    url:"/rest/login",
+                    data:jsonuserinfo,
+                    dataType:"json"
+                });
+        }
+</script>
 </head>
 <body>
-<form action="/rest/login" method="post" enctype="application/x-www-form-urlencoded">
+<form id="form1" name="form1" action="/rest/login" method="post" >
     name:<input type="text" name="name" />
-    passwd:<input type="password" name="passwd">
+    passwd:<input type="password" name="passwd"/>
     <p/>
-    <input type="submit">
+    <input type="button" name="submit" onclick="onClick();" value="submit" >
 </form>
 </body>
 </html>
