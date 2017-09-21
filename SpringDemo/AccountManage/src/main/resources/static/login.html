@@ -25,7 +25,6 @@
                 //var data = $("#form1").serializeArray(); //自动将form表单封装成json
                 //alert(JSON.stringify(data));
                 var data = $('#form1').serializeObject();
-                alert(JSON.stringify(data));
                 $.post({
                     type:"POST",
                     url:"/rest/login",
