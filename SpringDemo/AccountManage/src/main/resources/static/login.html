@@ -22,23 +22,25 @@
            return o;
         };
         function onClick(){
-                //var data = $("#form1").serializeArray(); //自动将form表单封装成json
-                //alert(JSON.stringify(data));
-                var data = $('#form1').serializeObject();
-                $.post({
-                    type:"POST",
-                    url:"/rest/login",
-                    contentType:"application/json",
-                    data:JSON.stringify(data),
-                    dataType:"json"
-                });
+            //var data = $("#form1").serializeArray(); //自动将form表单封装成json
+            //alert(JSON.stringify(data));
+            var data = $('#form1').serializeObject();
+            $.post({
+                type:"POST",
+                url:"/rest/login",
+                contentType:"application/json",
+                data:JSON.stringify(data),
+                dataType:"json"
+            },function(result){
+                alert(result);
+            });
         }
 </script>
 </head>
 <body>
 <form id="form1" name="form1" action="/rest/login" method="post" >
-    name:<input type="text" name="name" />
-    passwd:<input type="password" name="passwd"/>
+    name:<input type="text" name="username" />
+    passwd:<input type="password" name="password"/>
     <p/>
     <input type="button" name="submit" onclick="onClick();" value="submit" >
 </form>

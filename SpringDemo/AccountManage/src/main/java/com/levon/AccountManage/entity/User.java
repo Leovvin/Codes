@@ -1,17 +1,17 @@
 package com.levon.AccountManage.entity;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class User  extends AbstractPersistable<Long> {
+public class User implements Serializable {
     @Id
     @GeneratedValue
     Long id;
     String name;
+    String password;
 
     public Long getId() {
         return id;
@@ -27,5 +27,13 @@ public class User  extends AbstractPersistable<Long> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
