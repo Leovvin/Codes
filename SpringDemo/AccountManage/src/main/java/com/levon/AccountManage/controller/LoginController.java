@@ -28,6 +28,7 @@ public class LoginController {
             token= UUID.randomUUID().toString();
         }
 
-        return "{ss:\"sk\"}";
+//        return "{\"token\":\""+token+"\"}";
+        return token;
     }
 }

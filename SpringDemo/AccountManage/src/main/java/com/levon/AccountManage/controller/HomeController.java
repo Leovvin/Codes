@@ -1,4 +1,4 @@
 package com.levon.AccountManage.controller;
 
-public class Home {
+public class HomeController {
 }
