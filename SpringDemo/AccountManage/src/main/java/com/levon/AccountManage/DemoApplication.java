@@ -35,12 +35,11 @@ public class DemoApplication {
 		}
 
 		@Autowired
-        DataSource dataSource;
+        CustAuthenticationProvider custAuthenticationProvider;
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.jdbcAuthentication().dataSource(dataSource)
-                .withDefaultSchema()
-                .withUser("user").password("password").roles("USER");
+            auth.authenticationProvider(custAuthenticationProvider);
         }
     }
+
 }
