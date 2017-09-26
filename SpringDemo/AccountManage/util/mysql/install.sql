@@ -7,6 +7,7 @@ create table users(
     id bigint,
     name varchar(20) not null unique,
     password varchar(20) not null,
+    enables tinyint not null,
     primary key(id)
 );
 drop table if exists roles;
@@ -54,7 +55,7 @@ create table page_privileges(
 
 
 -- data insert
-insert into users values (1,'admin','admin');
+insert into users values (1,'admin','admin',1);
 insert into roles values (1,'admin','administrator');
 show tables;
 notee
