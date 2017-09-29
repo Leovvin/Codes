@@ -1,6 +1,6 @@
 package com.levon.AccountManage.controller;
 
-import com.levon.AccountManage.entity.Users;
+import com.levon.AccountManage.entity.User;
 import com.levon.AccountManage.form.Login;
 import com.levon.AccountManage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class LoginController {
     String login(@RequestBody Login login){
         String username=login.getUsername();
         String password=login.getPassword();
-        Users user=userRepository.findByName(username);
+        User user=userRepository.findByName(username);
         String token=null;
         if (Objects.nonNull(user)&&password.equals(user.getPassword())){
             token= UUID.randomUUID().toString();

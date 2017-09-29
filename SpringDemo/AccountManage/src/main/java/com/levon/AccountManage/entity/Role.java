@@ -1,17 +1,17 @@
 package com.levon.AccountManage.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-public class Users implements Serializable {
+@Table(name = "roles")
+public class Role implements Serializable {
     @Id
-    @GeneratedValue
     Long id;
     String name;
-    String password;
+    String desc;
 
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Users implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
