@@ -1,10 +1,7 @@
 package com.levon.AccountManage.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,9 +9,13 @@ import java.io.Serializable;
 public class UserRole implements Serializable {
     @Id
     long id;
-    @OneToOne
+    long userId;
+    long roleId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
     User user;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "roleId")
     Role role;
 
     public long getId() {
@@ -39,5 +40,21 @@ public class UserRole implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
     }
 }

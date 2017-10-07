@@ -1,9 +1,8 @@
 package com.levon.AccountManage.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -12,6 +11,8 @@ public class Role implements Serializable {
     Long id;
     String name;
     String desc;
+    @OneToMany(fetch= FetchType.EAGER,mappedBy = "role")
+    Set<UserRole> userRoles;
 
     public Long getId() {
         return id;

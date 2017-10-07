@@ -12,8 +12,8 @@ public class User implements Serializable {
     Long id;
     String name;
     String password;
-    @OneToMany(fetch=FetchType.EAGER)
-    Set<Role> roles;
+    @OneToMany(fetch=FetchType.EAGER,mappedBy = "user")
+    Set<UserRole> userRoles;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }
