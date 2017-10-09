@@ -17,12 +17,13 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user=userRepository.findByName(username);
-        Set<UserRole> userRoles=user.getUserRoles();
-        for (UserRole userRole:userRoles){
-            String desc=userRole.getRole().getDesc();
+        Set<Role> roles=user.getRoles();
+        for (Role role:roles){
+            String desc=role.getDesc();
         }
         if (Objects.isNull(user)){
             throw new UsernameNotFoundException("");

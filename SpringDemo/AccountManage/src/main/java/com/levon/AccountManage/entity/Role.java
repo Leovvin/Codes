@@ -11,8 +11,8 @@ public class Role implements Serializable {
     Long id;
     String name;
     String desc;
-    @OneToMany(fetch= FetchType.EAGER,mappedBy = "role")
-    Set<UserRole> userRoles;
+    @ManyToMany(mappedBy = "roles")
+    Set<User> users;
 
     public Long getId() {
         return id;

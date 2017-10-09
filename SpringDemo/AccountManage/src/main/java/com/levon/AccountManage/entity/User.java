@@ -12,8 +12,11 @@ public class User implements Serializable {
     Long id;
     String name;
     String password;
-    @OneToMany(fetch=FetchType.EAGER,mappedBy = "user")
-    Set<UserRole> userRoles;
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "user_roles"
+        ,joinColumns = {@JoinColumn(name = "userId",referencedColumnName = "id")}
+        ,inverseJoinColumns = {@JoinColumn(name = "roleId",referencedColumnName = "id")})
+    Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -39,11 +42,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
