@@ -1,6 +1,6 @@
 package com.levon.AccountManage.controller;
 
-import com.levon.AccountManage.entity.User;
+import com.levon.AccountManage.entity.security.User;
 import com.levon.AccountManage.form.Login;
 import com.levon.AccountManage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

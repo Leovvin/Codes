@@ -1,4 +1,4 @@
-package com.levon.AccountManage.entity;
+package com.levon.AccountManage.entity.security;
 
 import javax.persistence.*;
 import java.io.Serializable;

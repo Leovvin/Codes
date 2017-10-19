@@ -1,4 +1,4 @@
-package com.levon.AccountManage.entity;
+package com.levon.AccountManage.entity.security;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +12,7 @@ public class User implements Serializable {
     Long id;
     String name;
     String password;
+    boolean enables;
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "user_roles"
         ,joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}
@@ -48,5 +49,13 @@ public class User implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isEnables() {
+        return enables;
+    }
+
+    public void setEnables(boolean enables) {
+        this.enables = enables;
     }
 }

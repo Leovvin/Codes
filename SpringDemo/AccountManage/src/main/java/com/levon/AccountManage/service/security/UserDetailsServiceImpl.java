@@ -1,7 +1,8 @@
-package com.levon.AccountManage.service;
+package com.levon.AccountManage.service.security;
 
-import com.levon.AccountManage.entity.Role;
-import com.levon.AccountManage.entity.User;
+import com.google.common.collect.Lists;
+import com.levon.AccountManage.entity.security.Role;
+import com.levon.AccountManage.entity.security.User;
 import com.levon.AccountManage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -20,18 +21,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user=userRepository.findByName(username);
-        Set<Role> roles=user.getRoles();
-        for (Role role:roles){
-            String desc=role.getDescription();
-        }
         if (Objects.isNull(user)){
             throw new UsernameNotFoundException("");
+        }
+        List<String > roles= Lists.newArrayList();
+        for (Role role:user.getRoles()){
+            roles.add(role.getDescription());
         }
         org.springframework.security.core.userdetails.User.UserBuilder builder= org.springframework.security.core.userdetails.User.withUsername(username);
         builder.accountExpired(true)
             .accountLocked(true)
             .password(user.getPassword())
-            .roles("ADMIN");
+            .disabled(!user.isEnables())
+            .roles(roles.toArray(new String[0]));
         return builder.build();
     }
 }
