@@ -34,8 +34,8 @@ create table privileges(
 drop table if exists role_privileges;
 create table role_privileges(
     id bigint,
-    roleId bigint not null,
-    privilegeId bigint not null,
+    role_id bigint not null,
+    privilege_id bigint not null,
     primary key(id)
 );
 drop table if exists pages;
@@ -48,8 +48,8 @@ create table pages(
 drop table if exists page_privileges;
 create table page_privileges(
     id bigint,
-    pageId bigint not null,
-    privilegeId bigint not null,
+    page_id bigint not null,
+    privilege_id bigint not null,
     primary key(id)
 );
 
