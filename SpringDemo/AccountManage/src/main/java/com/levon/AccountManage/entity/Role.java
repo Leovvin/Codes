@@ -10,9 +10,7 @@ public class Role implements Serializable {
     @Id
     Long id;
     String name;
-    String desc;
-    @ManyToMany(mappedBy = "roles")
-    Set<User> users;
+    String description;
 
     public Long getId() {
         return id;
@@ -30,11 +28,11 @@ public class Role implements Serializable {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

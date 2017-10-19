@@ -2,7 +2,6 @@ package com.levon.AccountManage.service;
 
 import com.levon.AccountManage.entity.Role;
 import com.levon.AccountManage.entity.User;
-import com.levon.AccountManage.entity.UserRole;
 import com.levon.AccountManage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user=userRepository.findByName(username);
         Set<Role> roles=user.getRoles();
         for (Role role:roles){
-            String desc=role.getDesc();
+            String desc=role.getDescription();
         }
         if (Objects.isNull(user)){
             throw new UsernameNotFoundException("");

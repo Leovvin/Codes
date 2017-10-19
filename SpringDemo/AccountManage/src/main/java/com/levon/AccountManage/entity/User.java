@@ -14,8 +14,8 @@ public class User implements Serializable {
     String password;
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "user_roles"
-        ,joinColumns = {@JoinColumn(name = "userId",referencedColumnName = "id")}
-        ,inverseJoinColumns = {@JoinColumn(name = "roleId",referencedColumnName = "id")})
+        ,joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}
+        ,inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
     Set<Role> roles;
 
     public Long getId() {

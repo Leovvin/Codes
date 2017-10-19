@@ -14,14 +14,14 @@ drop table if exists roles;
 create table roles(
     id bigint,
     name varchar(20) not null,
-    des varchar(100),
+    description varchar(100),
     primary key(id)
 );
 drop table if exists user_roles;
 create table user_roles(
     id bigint,
-    userId bigint not null,
-    roleId bigint not null,
+    user_id bigint not null,
+    role_id bigint not null,
     primary key(id)
 );
 drop table if exists privileges;
