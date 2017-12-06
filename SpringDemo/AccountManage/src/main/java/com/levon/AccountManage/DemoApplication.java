@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
@@ -29,19 +30,24 @@ public class DemoApplication {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
             http
-                .httpBasic().and()
+                .httpBasic()
+			.and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest()
-                .authenticated().and()
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .antMatchers("/index.html", "/home.html", "/login.html").permitAll()
+				.antMatchers("/resource").hasRole("administrator")
+				.antMatchers("/user").hasRole("administrator")
+				.anyRequest().authenticated()
+			.and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+			.and()
+				.rememberMe();
 		}
 
 		@Autowired
-        CustAuthenticationProvider custAuthenticationProvider;
+		UserDetailsService userDetailsService;
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.authenticationProvider(custAuthenticationProvider);
+        	auth.userDetailsService(userDetailsService);
         }
     }
 

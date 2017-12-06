@@ -29,10 +29,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             roles.add(role.getDescription());
         }
         org.springframework.security.core.userdetails.User.UserBuilder builder= org.springframework.security.core.userdetails.User.withUsername(username);
-        builder.accountExpired(true)
-            .accountLocked(true)
+        builder.accountExpired(false)
+            .accountLocked(false)
             .password(user.getPassword())
-            .disabled(!user.isEnables())
+            .disabled(false)
             .roles(roles.toArray(new String[0]));
         return builder.build();
     }
