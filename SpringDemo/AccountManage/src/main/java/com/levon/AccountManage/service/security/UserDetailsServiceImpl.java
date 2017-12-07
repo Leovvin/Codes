@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import com.levon.AccountManage.entity.security.Role;
 import com.levon.AccountManage.entity.security.User;
 import com.levon.AccountManage.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +19,7 @@ import java.util.Objects;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
-
+    Logger logger= LoggerFactory.getLogger(getClass());
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user=userRepository.findByName(username);

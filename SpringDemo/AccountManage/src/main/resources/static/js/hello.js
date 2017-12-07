@@ -5,8 +5,8 @@ angular.module('hello', [ 'ngRoute' ])
       templateUrl : 'home.html',
       controller : 'home',
       controllerAs: 'controller'
-    }).when('/login', {
-      templateUrl : 'login.html',
+    }).when('/login1', {
+      templateUrl : 'login1.html',
       controller : 'navigation',
       controllerAs: 'controller'
     }).otherwise('/');
@@ -24,7 +24,7 @@ angular.module('hello', [ 'ngRoute' ])
   function($rootScope, $http, $location) {
     var self = this
     var authenticate = function(credentials, callback) {
-      var headers = credentials ? {authorization : "Basic "
+      var headers = credentials ? {authorization : " "
           + btoa(credentials.username + ":" + credentials.password)
       } : {};
       $http.get('user', {headers : headers}).then(function(response) {
@@ -40,17 +40,12 @@ angular.module('hello', [ 'ngRoute' ])
       });
     }
     authenticate();
+    var authenticate1 = function(credentials, callback) {
+        $http.post('login',{username:'admin',password:'admin'});
+    }
     self.credentials = {};
     self.login = function() {
-        authenticate(self.credentials, function() {
-          if ($rootScope.authenticated) {
-            $location.path("/");
-            self.error = false;
-          } else {
-            $location.path("/login");
-            self.error = true;
-          }
-        });
+        authenticate1(self.credentials);
     }
     self.logout = function() {
       $http.post('logout', {}).finally(function() {

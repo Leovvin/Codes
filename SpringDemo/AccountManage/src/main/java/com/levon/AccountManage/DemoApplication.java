@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
@@ -23,7 +24,10 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-
+	static UsernamePasswordAuthenticationFilter createUsernamePasswordAuthenticationFilter(){
+		UsernamePasswordAuthenticationFilter filter=new UsernamePasswordAuthenticationFilter();
+		return filter;
+	}
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -33,13 +37,15 @@ public class DemoApplication {
                 .httpBasic()
 			.and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/home.html", "/login.html").permitAll()
+                .antMatchers("/index.html", "/home.html", "/login1.html","login").permitAll()
 				.antMatchers("/resource").hasRole("administrator")
 				.antMatchers("/user").hasRole("administrator")
-				.anyRequest().authenticated()
+                .anyRequest().permitAll()
+//				.anyRequest().authenticated()
 			.and()
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			.and()
+                .addFilterAt(createUsernamePasswordAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class)
 				.rememberMe();
 		}
 
