@@ -24,7 +24,7 @@ angular.module('hello', [ 'ngRoute' ])
   function($rootScope, $http, $location) {
     var self = this
     var authenticate = function(credentials, callback) {
-      var headers = credentials ? {authorization : " "
+      var headers = credentials ? {authorization : "Basic "
           + btoa(credentials.username + ":" + credentials.password)
       } : {};
       $http.get('user', {headers : headers}).then(function(response) {
@@ -41,11 +41,20 @@ angular.module('hello', [ 'ngRoute' ])
     }
     authenticate();
     var authenticate1 = function(credentials, callback) {
-        $http.post('login',{username:'admin',password:'admin'});
+      $http.post('login',credentials);
     }
     self.credentials = {};
     self.login = function() {
-        authenticate1(self.credentials);
+//        authenticate1();
+        authenticate(self.credentials,function(){
+            if($rootScope.authenticated){
+                $location.path("/");
+                self.error=false;
+            }else{
+                $location.path("/login");
+                self.error=true;
+            }
+        });
     }
     self.logout = function() {
       $http.post('logout', {}).finally(function() {

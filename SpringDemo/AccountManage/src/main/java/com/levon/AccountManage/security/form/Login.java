@@ -1,4 +1,4 @@
-package com.levon.AccountManage.form;
+package com.levon.AccountManage.security.form;
 
 public class Login {
     String username;

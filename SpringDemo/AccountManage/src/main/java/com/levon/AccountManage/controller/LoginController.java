@@ -1,8 +1,8 @@
 package com.levon.AccountManage.controller;
 
-import com.levon.AccountManage.entity.security.User;
-import com.levon.AccountManage.form.Login;
-import com.levon.AccountManage.repository.UserRepository;
+import com.levon.AccountManage.security.entity.User;
+import com.levon.AccountManage.security.form.Login;
+import com.levon.AccountManage.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
-package com.levon.AccountManage.repository;
+package com.levon.AccountManage.security.repository;
 
-import com.levon.AccountManage.entity.security.User;
+import com.levon.AccountManage.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User,Long> {
