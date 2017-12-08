@@ -40,21 +40,21 @@ angular.module('hello', [ 'ngRoute' ])
       });
     }
     authenticate();
-    var authenticate1 = function(credentials, callback) {
+    var authenticate1 = function(credentials) {
       $http.post('login',credentials);
     }
     self.credentials = {};
     self.login = function() {
-//        authenticate1();
-        authenticate(self.credentials,function(){
-            if($rootScope.authenticated){
-                $location.path("/");
-                self.error=false;
-            }else{
-                $location.path("/login");
-                self.error=true;
-            }
-        });
+        authenticate1(self.credentials);
+//        authenticate(self.credentials,function(){
+//            if($rootScope.authenticated){
+//                $location.path("/");
+//                self.error=false;
+//            }else{
+//                $location.path("/login");
+//                self.error=true;
+//            }
+//        });
     }
     self.logout = function() {
       $http.post('logout', {}).finally(function() {

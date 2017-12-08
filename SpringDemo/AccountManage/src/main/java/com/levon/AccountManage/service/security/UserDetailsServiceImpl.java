@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         List<String > roles= Lists.newArrayList();
         for (Role role:user.getRoles()){
-            roles.add(role.getDescription());
+            roles.add(role.getName());
         }
         org.springframework.security.core.userdetails.User.UserBuilder builder= org.springframework.security.core.userdetails.User.withUsername(username);
         builder.accountExpired(false)
