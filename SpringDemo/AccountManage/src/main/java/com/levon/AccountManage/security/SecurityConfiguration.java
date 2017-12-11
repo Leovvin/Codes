@@ -1,6 +1,8 @@
 package com.levon.AccountManage.security;
 
 import com.levon.AccountManage.security.filter.LoginFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +18,10 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    LoginFilter getLoginFilter(){
-        return new LoginFilter();
+    LoginFilter getLoginFilter() throws Exception {
+        LoginFilter filter=new LoginFilter();
+        filter.setAuthenticationManager(super.authenticationManager());
+        return filter;
     }
 
     @Override
