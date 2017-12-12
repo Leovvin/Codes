@@ -1,4 +1,4 @@
-package com.levon.AccountManage.service.security;
+package com.levon.AccountManage.security.service;
 
 import com.google.common.collect.Lists;
 import com.levon.AccountManage.security.entity.Role;
