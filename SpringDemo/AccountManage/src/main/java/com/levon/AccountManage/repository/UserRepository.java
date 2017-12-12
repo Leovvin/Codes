@@ -1,4 +1,4 @@
-package com.levon.AccountManage.security.repository;
+package com.levon.AccountManage.repository;
 
 import com.levon.AccountManage.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

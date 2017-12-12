@@ -61,9 +61,14 @@ insert into users values (3,'user2','user2',1);
 insert into roles values (1,'admin','administrator');
 insert into roles values (2,'role1','role1');
 insert into roles values (3,'role2','role2');
+insert into privileges values (1,1,'administrator page privileges');
+insert into pages values (1,'administrator','/admin');
 insert into user_roles values (1,1,1);
 insert into user_roles values (2,2,2);
 insert into user_roles values (3,3,2);
 insert into user_roles values (4,3,3);
+insert into role_privileges values (1,1,1);
+insert into page_privileges values (1,1,1);
+
 show tables;
 notee

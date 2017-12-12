@@ -3,7 +3,7 @@ package com.levon.AccountManage.security.service;
 import com.google.common.collect.Lists;
 import com.levon.AccountManage.security.entity.Role;
 import com.levon.AccountManage.security.entity.User;
-import com.levon.AccountManage.security.repository.UserRepository;
+import com.levon.AccountManage.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

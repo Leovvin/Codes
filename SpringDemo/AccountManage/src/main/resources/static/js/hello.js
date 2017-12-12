@@ -5,8 +5,8 @@ angular.module('hello', [ 'ngRoute' ])
       templateUrl : 'home.html',
       controller : 'home',
       controllerAs: 'controller'
-    }).when('/login1', {
-      templateUrl : 'login1.html',
+    }).when('/login', {
+      templateUrl : 'login.html',
       controller : 'navigation',
       controllerAs: 'controller'
     }).otherwise('/');
