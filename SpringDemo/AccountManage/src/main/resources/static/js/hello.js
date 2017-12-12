@@ -41,7 +41,9 @@ angular.module('hello', [ 'ngRoute' ])
     }
     authenticate();
     var authenticate1 = function(credentials) {
-      $http.post('login',credentials);
+      var headers = credentials ? {authorization : btoa(credentials.username + ":" + credentials.password)
+      } : {};
+      $http.get('login',{headers : headers});
     }
     self.credentials = {};
     self.login = function() {
