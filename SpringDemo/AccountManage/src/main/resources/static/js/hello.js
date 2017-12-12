@@ -41,10 +41,11 @@ angular.module('hello', [ 'ngRoute' ])
     }
     authenticate();
     var authenticate1 = function(credentials) {
-        var headers = credentials ? {authorization :btoa(credentials.username + ":" + credentials.password)
+        var headers = credentials ? {authorization :"Account "+btoa(credentials.username + ":" + credentials.password)
           } : {};
         $http.get('login',{headers : headers}).then(function(response){
-
+            $http.get('user').then(function(response){
+            })
         });
     }
     self.credentials = {};

@@ -32,6 +32,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             username, tokens[1]);
         authRequest.setDetails(
             this.authenticationDetailsSource.buildDetails(request));
+
         return getAuthenticationManager()
             .authenticate(authRequest);
     }
