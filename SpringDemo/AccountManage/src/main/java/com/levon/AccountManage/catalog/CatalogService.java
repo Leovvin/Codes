@@ -18,7 +18,8 @@ public class CatalogService {
     Set<CatalogBO> getCatalogBO(Principal principal){
         User user=userRepository.findByName(principal.getName());
         Set<CatalogBO> catalogs=user.getRoles().stream()
-            .flatMap(role -> role.getPrivileges().stream().flatMap(privilege -> privilege.getPages().stream()))
+            .flatMap(role -> role.getPrivileges().stream())
+            .flatMap(privilege -> privilege.getPages().stream())
             .map(page -> createCatalogBO(page))
             .collect(Collectors.toSet());
         return catalogs;
