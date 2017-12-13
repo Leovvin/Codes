@@ -28,7 +28,7 @@ drop table if exists privileges;
 create table privileges(
     id bigint,
     type int not null,
-    des varchar(100) not null,
+    description varchar(100) not null,
     primary key(id)
 );
 drop table if exists role_privileges;

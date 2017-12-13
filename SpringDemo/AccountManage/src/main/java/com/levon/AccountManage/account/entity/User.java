@@ -1,4 +1,4 @@
-package com.levon.AccountManage.security.entity;
+package com.levon.AccountManage.account.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ public class User implements Serializable {
     String name;
     String password;
     boolean enables;
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name = "user_roles"
         ,joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}
         ,inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})

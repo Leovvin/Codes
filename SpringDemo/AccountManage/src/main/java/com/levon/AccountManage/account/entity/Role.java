@@ -1,4 +1,4 @@
-package com.levon.AccountManage.security.entity;
+package com.levon.AccountManage.account.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +11,12 @@ public class Role implements Serializable {
     Long id;
     String name;
     String description;
+
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name = "role_privileges"
+        ,joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+        ,inverseJoinColumns = {@JoinColumn(name = "privilege_id",referencedColumnName = "id")})
+    Set<Privilege> privileges;
 
     public Long getId() {
         return id;
