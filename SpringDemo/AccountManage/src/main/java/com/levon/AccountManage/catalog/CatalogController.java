@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -15,13 +16,9 @@ public class CatalogController {
     CatalogService catalogService;
 
     @RequestMapping("/resource")
-    public Map<String,Object> resource(Principal user) {
-        catalogService.getCatalogBO(user);
-        Map<String,Object> model = new HashMap<String,Object>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("user", user.getName());
-        model.put("content", "Hello World");
-        return model;
+    public Set<CatalogBO> resource(Principal user) {
+        Set<CatalogBO> catalogs=catalogService.getCatalogBO(user);
+        return catalogs;
     }
     @RequestMapping("/user")
     public Principal user(Principal user) {

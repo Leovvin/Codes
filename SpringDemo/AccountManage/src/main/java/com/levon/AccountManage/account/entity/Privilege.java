@@ -40,4 +40,12 @@ public class Privilege {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(Set<Page> pages) {
+        this.pages = pages;
+    }
 }

@@ -41,4 +41,12 @@ public class Role implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
+    }
 }
