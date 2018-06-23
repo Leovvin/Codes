@@ -38,9 +38,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resource").hasRole("admin")
                 .antMatchers("/user").hasRole("admin")
                 .anyRequest().permitAll()
-                .and()
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+//                .and()
+//                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and()
 //                .addFilterAt(getBasicFilter(),BasicAuthenticationFilter.class)
 
                 ;

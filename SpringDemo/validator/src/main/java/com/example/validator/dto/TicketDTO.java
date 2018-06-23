@@ -11,12 +11,14 @@
 package com.example.validator.dto;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class TicketDTO {
     @Min(value = 10,message = "price must bigger than 10")
     Integer price;
     String name;
+    @NotNull
     Date date;
 
     public Integer getPrice() {
