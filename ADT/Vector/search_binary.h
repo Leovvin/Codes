@@ -1,5 +1,5 @@
 //
-// Created by 贺亮 on 09/04/2017.
+// Created by Leo on 09/04/2017.
 //
 
 #ifndef VECTOR_SEARCH_BINARY_H

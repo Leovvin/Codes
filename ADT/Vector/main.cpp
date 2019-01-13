@@ -21,16 +21,24 @@ void visit(int & i){
     std::cout << i << std::endl;
 }
 
+struct Increase{
+    virtual void operator()(int & t){
+        t++;
+    }
+};
+
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
     Vector<int> v;
-//    std::cout << v.size() << std::endl;
     v.insert(0,1);
     v.insert(1,2);
     v.insert(2,2);
     v.insert(3,4);
-//    v.deduplicate();
     v.traverse(visit);
-    std::cout << v.search(4,0,4) << std::endl;
+    std::cout << "............................................" << std::endl;
+    v.deduplicate();
+    v.traverse(visit);
+    std::cout << "............................................" << std::endl;
     return 0;
 }
