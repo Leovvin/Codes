@@ -3,4 +3,4 @@ project(bintree)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(bintree main.cpp binnode.cpp binnode.h)
+add_executable(bintree main.cpp binnode.cpp binnode.h binnode_macro_basic.h)
