@@ -82,12 +82,31 @@ template <typename T> template <typename VST> void BinNode<T>::travPre(VST &vst)
     }
 }
 
-template <typename T> template <typename VST> void BinNode<T>::travIn(VST &vst) {
-    travIn(this->lc);
-    vst()
+template <typename T,typename VST> void travIn_r(BinNodePosi(T) node, VST &vst){
+    if(!node) return;
+    travIn_r(node->lc,vst);
+    vst(node->data);
+    travIn_r(node->rc,vst);
 }
-template <typename T> template <typename VST> void BinNode<T>::travPost(VST &vst) {
 
+template <typename T> void goAlongLeftBranch(BinNodePosi(T) node,std::stack<BinNodePosi(T)>& s){
+    s.push(node);
+    while (HasLChild(*node)){
+        node = node->lc;
+        s.push(node);
+    }
 }
+template <typename T> template <typename VST> void BinNode<T>::travIn(VST &vst) {
+    std::stack<BinNodePosi(T)> s;
+    goAlongLeftBranch(this,s);
+    while (!s.empty()){
+        BinNodePosi(T) node = s.top();s.pop();
+        vst(node->data);
+        if (HasRChild(*node)){
+            goAlongLeftBranch(node->rc,s);
+        }
+    }
+}
+
 
 #endif //BINTREE_BINNODE_H

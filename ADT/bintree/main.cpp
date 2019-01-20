@@ -17,7 +17,8 @@ int main() {
     l2r->insertAsRC(7);
     visit = print;
     node->travPre(visit);
-
+    std::cout << "--------------------------" << std::endl;
+    node->travIn(visit);
 
     return 0;
 }
