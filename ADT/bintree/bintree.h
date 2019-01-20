@@ -62,4 +62,11 @@ template <typename T> BinNodePosi(T) BinTree<T>::insertAsLC(BinNode<T> *x, const
     updateHeightAbove(x);
     return x->rc;
 }
+
+template <typename T> BinNodePosi(T) BinTree<T>::attachAsLC(BinNode<T> *x, BinTree<T> *&t) {
+    
+}
+template <typename T> void BinTree<T>::updateHeightAbove(BinNode<T> *x) {
+
+}
 #endif //BINTREE_BINTREE_H
