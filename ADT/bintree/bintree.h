@@ -94,4 +94,8 @@ template <typename T> void BinTree<T>::updateHeightAbove(BinNode<T> *x) {
         x= x->parent;
     }
 }
+
+template <typename T> int BinTree<T>::remove(BinNodePosi(T) x){
+    release(x);
+}
 #endif //BINTREE_BINTREE_H

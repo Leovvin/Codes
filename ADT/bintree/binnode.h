@@ -4,6 +4,7 @@
 #ifndef BINTREE_BINNODE_H
 #define BINTREE_BINNODE_H
 
+#include "release.h"
 #include "binnode_macro_basic.h"
 #include <iostream>
 #include <queue>

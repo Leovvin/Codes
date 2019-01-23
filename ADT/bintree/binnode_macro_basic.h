@@ -15,4 +15,6 @@
 #define HasBothChild(x) ( HasLChild(x) && HasRChild(x) )
 #define IsLeaf(x) ( ! HasChild(x) )
 
+#define FromParentTo(x) ( IsRoot(x) ? _root : ( IsLChild(x) ? (x).parent->lc : (x).parent->rc ) )
+
 #endif //BINTREE_BINNODE_MACRO_BASIC_H
