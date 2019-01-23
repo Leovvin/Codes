@@ -29,7 +29,7 @@ public:
     BinNodePosi(T) insertAsLC(BinNodePosi(T) x,T const& e);
     BinNodePosi(T) insertAsRC(BinNodePosi(T) x,T const& e);
     BinNodePosi(T) attachAsLC(BinNodePosi(T) x,BinTree<T>* &t);
-    BinNodePosi(T) attacjAsRC(BinNodePosi(T) x,BinTree<T>* &t);
+    BinNodePosi(T) attachAsRC(BinNodePosi(T) x,BinTree<T>* &t);
     int remove(BinNodePosi(T) x);
     BinTree<T>* secede(BinNodePosi(T) x);
     template <typename VST> void travLevel(VST& vst);
@@ -47,6 +47,7 @@ public:
 template <typename T> BinNodePosi(T) BinTree<T>::insertAsRoot(const T &e) {
     _size = 1;
     _root = new BinNode<T>(e);
+    return _root;
 }
 
 template <typename T> BinNodePosi(T) BinTree<T>::insertAsRC(BinNode<T> *x, const T &e) {
@@ -60,19 +61,37 @@ template <typename T> BinNodePosi(T) BinTree<T>::insertAsLC(BinNode<T> *x, const
     _size++;
     x->insertAsLC(e);
     updateHeightAbove(x);
-    return x->rc;
+    return x->lc;
 }
 
 template <typename T> BinNodePosi(T) BinTree<T>::attachAsLC(BinNode<T> *x, BinTree<T> *&t) {
+    x->lc = t->_root;
+    x->lc->parent = x;
     _size += t->_size ;
-    x->insertAsLC(t->_root);
     updateHeightAbove(x);
-    return x->rc;
+    t->_root = NULL;
+    t->_size = 0;
+    t = NULL;
+    return x;
+}
+
+template <typename T> BinNodePosi(T) BinTree<T>::attachAsRC(BinNode<T> *x,BinTree<T> *&t) {
+    x->rc = t->_root;
+    x->rc->parent = x;
+    _size += t->_size;
+    updateHeightAbove(x);
+    t->_root = NULL;
+    t->_size = 0;
+    t = NULL;
+    return x;
 }
 template <typename T> int BinTree<T>::updateHeight(BinNode<T> *x){
     return x->height = 1 + std::max(stature(x->lc),stature(x->rc));
 }
 template <typename T> void BinTree<T>::updateHeightAbove(BinNode<T> *x) {
-
+    while(x){
+        updateHeight(x);
+        x= x->parent;
+    }
 }
 #endif //BINTREE_BINTREE_H
