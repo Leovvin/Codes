@@ -64,10 +64,13 @@ template <typename T> BinNodePosi(T) BinTree<T>::insertAsLC(BinNode<T> *x, const
 }
 
 template <typename T> BinNodePosi(T) BinTree<T>::attachAsLC(BinNode<T> *x, BinTree<T> *&t) {
-    
+    _size += t->_size ;
+    x->insertAsLC(t->_root);
+    updateHeightAbove(x);
+    return x->rc;
 }
 template <typename T> int BinTree<T>::updateHeight(BinNode<T> *x){
-    return x->height = 1 + max(stature(x->lc),stature(x->rc));
+    return x->height = 1 + std::max(stature(x->lc),stature(x->rc));
 }
 template <typename T> void BinTree<T>::updateHeightAbove(BinNode<T> *x) {
 

@@ -28,6 +28,7 @@ template <typename T> struct BinNode{
             data(e),parent(p),lc(lc),rc(rc),height(h),npl(l),color(color){};
 
     int size();
+    int get_height();
     BinNodePosi(T) insertAsLC(T const& e);
     BinNodePosi(T) insertAsRC(T const& e);
     BinNodePosi(T) succ();
@@ -46,6 +47,10 @@ template <typename T> int BinNode<T>::size(){
     if(lc) s += lc->size();
     if(rc) s += rc->size();
     return s;
+}
+
+template <typename T> int BinNode<T>::get_height(){
+    return height;
 }
 
 template <typename T> BinNodePosi(T) BinNode<T>::insertAsLC(const T &e) {
