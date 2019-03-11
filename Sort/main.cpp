@@ -4,7 +4,7 @@
 #include "swap.h"
 #include "printArray.h"
 #include "insertSort.h"
-#include "mergeSort1.h"
+#include "mergeSort.h"
 #include "heapSort.h"
 #include "shellSort.h"
 #include "selectionSort.h"
@@ -27,7 +27,7 @@ int main(){
     buildArray=creatRandomArray;
     int* array=buildArray(0,100,10);
     printArray(array,10);
-    sort=mergeSort1;
+    sort=mergeSort;
     sort(array,10);
     printArray(array,10);
 }
