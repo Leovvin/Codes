@@ -9,32 +9,55 @@ void print(int data){
 }
 
 int main() {
-//    BinNodePosi(int) node = new BinNode<int>(1);
-//    BinNodePosi(int) l2l = node->insertAsLC(2);
-//    BinNodePosi(int) l2r = node->insertAsRC(3);
-//    l2l->insertAsLC(4);
-//    l2l->insertAsRC(5);
-//    l2r->insertAsLC(6);
-//    l2r->insertAsRC(7);
-//    visit = print;
-//    node->travPre(visit);
-//    std::cout << "--------------------------" << std::endl;
+	visit = print;
+
+	{
+//		BinNodePosi(int) node = new BinNode<int>(1);
+//		BinNodePosi(int) l2l = node->insertAsLC(2);
+//		BinNodePosi(int) l2r = node->insertAsRC(3);
+//		l2l->insertAsLC(4);
+//		l2l->insertAsRC(5);
+//		l2r->insertAsLC(6);
+//		l2r->insertAsRC(7);
 //
-//    node->travIn(visit);
+//		node->travPre(visit);
+//		std::cout << "--------------------------" << std::endl;
+//
+//		node->travIn(visit);
+	}
 
-    BinTree<int> * tree = new BinTree<int>();
-    BinNodePosi(int) root = tree->insertAsRoot(1);
-    BinNodePosi(int) l2l = tree->insertAsLC(root,2);
-    BinNodePosi(int) l3ll = tree->insertAsLC(l2l,3);
+	{
+	    BinTree<int> * tree = new BinTree<int>();
+	    BinNodePosi(int) root = tree->insertAsRoot(1);
+	    BinNodePosi(int) l2l = tree->insertAsLC(root,2);
+	    BinNodePosi(int) l3lr = tree->insertAsRC(l2l,3);
 
-    BinTree<int> * tree2 = new BinTree<int>();
-    BinNodePosi(int) tree2_root = tree2->insertAsRoot(4);
-    BinNodePosi(int) tree2_l2l = tree2->insertAsLC(tree2_root,5);
-    BinNodePosi(int) tree2_l3ll = tree2->insertAsLC(tree2_l2l,6);
-    
-    tree->attachAsRC(root,tree2);
+	    BinTree<int> * tree2 = new BinTree<int>();
+	    BinNodePosi(int) tree2_root = tree2->insertAsRoot(4);
+	    BinNodePosi(int) tree2_l2r = tree2->insertAsRC(tree2_root,5);
+	    BinNodePosi(int) tree2_l3rl = tree2->insertAsLC(tree2_l2r,6);
 
-    std::cout <<  tree->size()   << std::endl;
-    std::cout <<  root->get_height()   << std::endl;
+	    tree->attachAsRC(root,tree2);
+
+	    tree->travIn(visit);
+
+		std::cout <<  "--------------------"   << std::endl;
+		std::cout << tree2_l3rl->succ()->data << std::endl;
+		std::cout <<  "--------------------"   << std::endl;
+	    std::cout <<  tree->size()   << std::endl;
+		std::cout <<  "--------------------"   << std::endl;
+	    std::cout <<  root->get_height()   << std::endl;
+	}
+
+
+    {
+//        BinTree<int> tree1;
+//        BinNodePosi(int) root = tree1.insertAsRoot(1);
+//        BinNodePosi(int) l2l = tree1.insertAsLC(root,2);
+//        tree1.insertAsLC(l2l,3);
+//        tree1.travIn(visit);
+    }
+
+
     return 0;
 }

@@ -98,4 +98,11 @@ template <typename T> void BinTree<T>::updateHeightAbove(BinNode<T> *x) {
 template <typename T> int BinTree<T>::remove(BinNodePosi(T) x){
     release(x);
 }
+
+template <typename T> template <typename VST> void BinTree<T>::travIn(VST &vst) {
+	if (_root) _root->travIn(vst);
+}
+template <typename T> template <typename VST> void BinTree<T>::travLevel(VST &vst) {
+	if (_root) _root->travLevel(vst);
+}
 #endif //BINTREE_BINTREE_H

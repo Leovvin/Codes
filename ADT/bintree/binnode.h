@@ -37,6 +37,8 @@ template <typename T> struct BinNode{
     template <typename VST> void travPre( VST& vst);
     template <typename VST> void travIn( VST& vst);
     template <typename VST> void travPost( VST& vst);
+    BinNodePosi(T) zag();
+    BinNodePosi(T) zig();
 
     bool operator< ( BinNode const& bn){ return data < bn.data;}
     bool operator== (BinNode const& bn){ return data == bn.data;}
@@ -86,6 +88,7 @@ template <typename T> template <typename VST> void BinNode<T>::travPre(VST &vst)
         if(HasRChild(*n)) s.push(n->rc);
         if(HasLChild(*n)) s.push(n->lc);
     }
+    delete s;
 }
 
 template <typename T,typename VST> void travIn_r(BinNodePosi(T) node, VST &vst){
@@ -114,5 +117,29 @@ template <typename T> template <typename VST> void BinNode<T>::travIn(VST &vst) 
     }
 }
 
+template <typename T> BinNodePosi(T) BinNode<T>::succ() {
+	BinNodePosi(T) s = this;
+	if (rc){
+		s = rc;
+		while (s->lc){
+			s = s->lc;
+		}
+	} else{
+		while (IsRChild(*s)){
+			s = s->parent;
+		}
+		s = s->parent;
+	}
+
+	return s;
+}
+
+template <typename T> BinNodePosi(T) BinNode<T>::zag() {
+
+}
+
+template <typename T> BinNodePosi(T) BinNode<T>::zig() {
+
+}
 
 #endif //BINTREE_BINNODE_H

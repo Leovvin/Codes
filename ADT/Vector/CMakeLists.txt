@@ -1,7 +1,25 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.13)
 project(Vector)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES Vector.h Constructor_by_copying.h insert.h expand.h main.cpp removeinterval.h shrink.h traverse.h remove.h disordered.h bracket.h find.h deduplicate.h uniquify.h search.h search_binary.h search_fibonaccian.h)
-add_executable(Vector ${SOURCE_FILES})
+include_directories(.)
+
+add_executable(Vector
+        bracket.h
+        Constructor_by_copying.h
+        deduplicate.h
+        disordered.h
+        expand.h
+        find.h
+        insert.h
+        main.cpp
+        remove.h
+        removeinterval.h
+        search.h
+        search_binary.h
+        search_fibonaccian.h
+        shrink.h
+        traverse.h
+        uniquify.h
+        Vector.h)
