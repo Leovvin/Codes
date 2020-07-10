@@ -28,7 +28,7 @@ public class OptionPanel extends JPanel {
     ActionListener addAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
         }
     };
 
