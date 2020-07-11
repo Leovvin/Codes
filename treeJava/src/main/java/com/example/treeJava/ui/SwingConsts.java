@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.example.treeJava.ui;
 
 public class SwingConsts {
     public static final int FRAME_WIDTH=1300;

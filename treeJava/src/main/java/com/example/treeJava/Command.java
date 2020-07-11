@@ -1,11 +1,8 @@
-package com.example;
+package com.example.treeJava;
 
-import com.example.ui.ShowFrame;
+import com.example.treeJava.ui.ShowFrame;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import javax.swing.*;
-import java.awt.*;
 
 @Component
 public class Command implements CommandLineRunner {
@@ -19,6 +16,5 @@ public class Command implements CommandLineRunner {
                 frame.pack();
             }
         });
-
     }
 }
