@@ -13,4 +13,13 @@ public class TreeNode<T> {
     TreeNode<T> right;
     TreeNode<T> parent;
 
+    public TreeNode(T data){
+        this.data = data;
+    }
+
+    public TreeNode(T data, TreeNode parent){
+        this(data);
+        this.parent = parent;
+    }
+
 }
