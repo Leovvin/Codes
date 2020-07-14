@@ -54,7 +54,7 @@ public class UIConfig {
 
     @Bean
     public IBinaryTree<Integer> initBinaryTree(){
-        IBinaryTree<Integer> tree = new AVLTree<>();
+        IBinaryTree<Integer> tree = new AVLTree();
         return tree;
     }
 

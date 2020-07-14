@@ -1,5 +1,6 @@
 package com.example.treeJava.model;
 
+import com.example.treeJava.ui.ShowNode;
 import lombok.Data;
 
 @Data
@@ -13,6 +14,8 @@ public class TreeNode<T> {
     TreeNode<T> right;
     TreeNode<T> parent;
 
+    ShowNode showNode;
+
     public TreeNode(T data){
         this.data = data;
     }
@@ -21,5 +24,6 @@ public class TreeNode<T> {
         this(data);
         this.parent = parent;
     }
+
 
 }

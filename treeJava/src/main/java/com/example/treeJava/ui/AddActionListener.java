@@ -19,7 +19,7 @@ public class AddActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        binaryTree.addRoot(optionPanel.getInputValue());
+        binaryTree.insert(optionPanel.getInputValue());
         SwingUtilities.invokeLater(()->{
             showPanel.refreshTree();
         });
