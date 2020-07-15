@@ -25,5 +25,9 @@ public class TreeNode<T> {
         this.parent = parent;
     }
 
+    @Override
+    public String toString(){
+        return getData().toString();
+    }
 
 }

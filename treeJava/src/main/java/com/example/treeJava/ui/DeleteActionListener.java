@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @Component
-public class AddActionListener implements ActionListener {
+public class DeleteActionListener implements ActionListener {
     @Autowired
     ShowPanel showPanel;
     @Autowired
@@ -19,7 +19,7 @@ public class AddActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        binaryTree.insert(optionPanel.getInputValue());
+        binaryTree.delete(optionPanel.getInputValue());
 
         SwingUtilities.invokeLater(()->{
             showPanel.refreshTree();

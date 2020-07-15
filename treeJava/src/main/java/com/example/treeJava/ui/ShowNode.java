@@ -7,6 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ShowNode {
     int x,y;
-    String primaryData;
-    String secondaryData;
+    String data;
 }

@@ -1,10 +1,8 @@
 package com.example.treeJava.ui;
 
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
-import java.awt.*;
 
 @Component
 public class OptionPanel extends JPanel {

@@ -2,10 +2,7 @@ package com.example.treeJava.config;
 
 import com.example.treeJava.model.AVLTree;
 import com.example.treeJava.model.IBinaryTree;
-import com.example.treeJava.ui.AddActionListener;
-import com.example.treeJava.ui.OptionPanel;
-import com.example.treeJava.ui.ShowPanel;
-import com.example.treeJava.ui.SwingConsts;
+import com.example.treeJava.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,20 +22,21 @@ public class UIConfig {
     OptionPanel optionPanel;
     @Autowired
     ShowPanel showPanel;
-    @Autowired
-    AddActionListener addActionListener;
 
     @Bean("showFrame")
-    public JFrame initShowFrame(){
+    public JFrame initShowFrame(AddActionListener addActionListener, DeleteActionListener deleteActionListener){
         showPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,1) );
         showPanel.setBackground(Color.decode("#D3D3D3"));
 
         JTextField input = new JTextField(16);
         JButton addButton = new JButton("Add");
+        JButton rmButton = new JButton("Delete");
         JButton nextButton = new JButton("Next");
         addButton.addActionListener(addActionListener);
+        rmButton.addActionListener(deleteActionListener);
         optionPanel.add(input);
         optionPanel.add(addButton);
+        optionPanel.add(rmButton);
         optionPanel.add(nextButton);
         optionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,1) );
         optionPanel.setInput(input);

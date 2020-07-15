@@ -41,6 +41,27 @@ public class AVLTree implements IBinaryTree<Integer> {
         return node;
     }
 
+    @Override
+    public Integer delete(Integer integer) {
+        TreeNode<Integer> node = search(integer);
+        if (Objects.isNull(node)){
+            return null;
+        }
+        if (node == root){
+            root = null;
+            return root.getData();
+        }
+
+        TreeNode parent = node.getParent();
+        boolean isLeft = parent.getLeft() == node;
+        if (isLeft){
+            parent.setLeft(null);
+        }else {
+            parent.setRight(null);
+        }
+        return node.getData();
+    }
+
     private void updateHeight(TreeNode node){
         while (Objects.nonNull(node)&&Objects.nonNull(node.getParent())&&node.parent.getHeight() == node.getHeight()){
             node.parent.setHeight(node.getParent().getHeight()+1);

@@ -36,20 +36,27 @@ public class ShowPanel extends JPanel {
 
     private ShowNode generateRoot(TreeNode treeNode){
         Integer middle = this.getWidth()>>>1;
-        ShowNode showNode = new ShowNode(middle-40,10,treeNode.getData().toString(),Integer.toString(treeNode.getHeight()));
+        ShowNode showNode = new ShowNode(middle-40,10,treeNode.toString());
         treeNode.setShowNode(showNode);
         return  showNode;
     }
 
     private ShowNode generateChild(TreeNode treeNode){
         ShowNode parentShowNode = treeNode.getParent().getShowNode();
+        Integer level = 1;
+        TreeNode tmp = treeNode;
+        while (tmp.getParent() != binaryTree.getRoot()){
+            level++;
+            tmp = tmp.getParent();
+        }
+        Integer offset = SwingConsts.FRAME_WIDTH >>> level +1;
         boolean isLeft = treeNode.getParent().getLeft() == treeNode;
         if (isLeft){
-            ShowNode showNode = new ShowNode(parentShowNode.getX()-150,parentShowNode.getY()+50,treeNode.getData().toString(),Integer.toString(treeNode.getHeight()));
+            ShowNode showNode = new ShowNode(parentShowNode.getX()-offset,parentShowNode.getY()+50,treeNode.toString());
             treeNode.setShowNode(showNode);
             return showNode;
         }else {
-            ShowNode showNode = new ShowNode(parentShowNode.getX()+50,parentShowNode.getY()+50,treeNode.getData().toString(),Integer.toString(treeNode.getHeight()));
+            ShowNode showNode = new ShowNode(parentShowNode.getX()+offset,parentShowNode.getY()+50,treeNode.toString());
             treeNode.setShowNode(showNode);
             return showNode;
         }
@@ -68,7 +75,7 @@ public class ShowPanel extends JPanel {
 
     private void drawNode(Graphics2D g2,ShowNode showNode){
         g2.setColor(Color.PINK);
-        g2.fillRect(showNode.getX(),showNode.getY(),80,35);
+        g2.fillRect(showNode.getX(),showNode.getY(),40,35);
 
         g2.setColor(Color.black);
 
@@ -76,16 +83,9 @@ public class ShowPanel extends JPanel {
             Point2D loc = new Point(showNode.getX()+10,showNode.getY()+13);
             Font font = g2.getFont();
             FontRenderContext frc = g2.getFontRenderContext();
-            TextLayout layout = new TextLayout(showNode.getPrimaryData(), font, frc);
+            TextLayout layout = new TextLayout(showNode.getData(), font, frc);
             layout.draw(g2, (float)loc.getX(), (float)loc.getY());
         }
 
-        {
-            Point2D loc1 = new Point(showNode.getX()+10,showNode.getY()+28);
-            Font font1 = g2.getFont();
-            FontRenderContext frc1 = g2.getFontRenderContext();
-            TextLayout layout1 = new TextLayout(showNode.getSecondaryData(), font1, frc1);
-            layout1.draw(g2, (float) loc1.getX(), (float) loc1.getY());
-        }
     }
 }
