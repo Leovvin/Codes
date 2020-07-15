@@ -8,7 +8,7 @@ public class TreeNode<T> {
 
     T data;
     boolean isRed;
-    int height;
+    int height = 0;
 
     TreeNode<T> left;
     TreeNode<T> right;

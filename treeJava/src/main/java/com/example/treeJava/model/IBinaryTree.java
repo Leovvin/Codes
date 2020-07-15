@@ -8,4 +8,9 @@ public interface IBinaryTree<T> {
 
     TreeNode<T> insert(T t);
 
+    void traversal(Visitor visitor);
+
+    public interface Visitor<T>{
+        public void visit(TreeNode<T> treeNode);
+    }
 }

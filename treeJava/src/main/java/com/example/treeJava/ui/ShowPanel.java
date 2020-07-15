@@ -22,13 +22,15 @@ public class ShowPanel extends JPanel {
         Graphics g = this.getGraphics();
         Graphics2D g2 = (Graphics2D) g;
 
-        TreeNode rootNode = binaryTree.getRoot();
-        ShowNode rootShowNode = generateRoot(rootNode);
-        appendNode(g2,null,rootShowNode);
+        binaryTree.traversal(treeNode -> drawNode(g2,generateShowNode(treeNode)));
 
-        if (Objects.nonNull(rootNode.getLeft())){
-            ShowNode child = generateChild(rootNode,true);
-            appendNode(g2,rootShowNode,child);
+    }
+
+    private ShowNode generateShowNode(TreeNode treeNode){
+        if (Objects.isNull(treeNode.getParent())){
+            return generateRoot(treeNode);
+        }else {
+            return generateChild(treeNode);
         }
     }
 
@@ -39,17 +41,16 @@ public class ShowPanel extends JPanel {
         return  showNode;
     }
 
-    private ShowNode generateChild(TreeNode treeNode,boolean isLeft){
-        ShowNode parentShowNode = treeNode.getShowNode();
+    private ShowNode generateChild(TreeNode treeNode){
+        ShowNode parentShowNode = treeNode.getParent().getShowNode();
+        boolean isLeft = treeNode.getParent().getLeft() == treeNode;
         if (isLeft){
-            TreeNode child = treeNode.getLeft();
-            ShowNode showNode = new ShowNode(parentShowNode.getX()-100,parentShowNode.getY()+50,child.getData().toString(),Integer.toString(child.getHeight()));
-            child.setShowNode(showNode);
+            ShowNode showNode = new ShowNode(parentShowNode.getX()-150,parentShowNode.getY()+50,treeNode.getData().toString(),Integer.toString(treeNode.getHeight()));
+            treeNode.setShowNode(showNode);
             return showNode;
         }else {
-            TreeNode child = treeNode.getRight();
-            ShowNode showNode = new ShowNode(parentShowNode.getX()-100,parentShowNode.getY()+50,child.getData().toString(),Integer.toString(child.getHeight()));
-            child.setShowNode(showNode);
+            ShowNode showNode = new ShowNode(parentShowNode.getX()+50,parentShowNode.getY()+50,treeNode.getData().toString(),Integer.toString(treeNode.getHeight()));
+            treeNode.setShowNode(showNode);
             return showNode;
         }
     }
