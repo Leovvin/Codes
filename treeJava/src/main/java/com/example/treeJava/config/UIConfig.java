@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+import java.util.stream.Stream;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -53,6 +55,9 @@ public class UIConfig {
     @Bean
     public IBinaryTree<Integer> initBinaryTree(){
         IBinaryTree<Integer> tree = new AVLTree();
+        Random random = new Random();
+        random.ints(10,0,100)
+                .forEach(i->tree.insert(i));
         return tree;
     }
 

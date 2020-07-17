@@ -27,7 +27,7 @@ public class TreeNode<T> {
 
     @Override
     public String toString(){
-        return getData().toString();
+        return getData().toString()+":"+getHeight();
     }
 
 }
