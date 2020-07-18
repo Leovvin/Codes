@@ -42,24 +42,72 @@ public class AVLTree implements IBinaryTree<Integer> {
     }
 
     @Override
+    public void clear() {
+        root = null;
+    }
+
+    @Override
     public Integer delete(Integer integer) {
         TreeNode<Integer> node = search(integer);
         if (Objects.isNull(node)){
             return null;
         }
-        if (node == root){
-            root = null;
-            return root.getData();
+
+        TreeNode candidate;
+        if (Objects.nonNull(node.getRight())){
+            candidate = getMostLeftDescendant(node);
+            if (candidate.getParent().getLeft() == candidate){
+                candidate.getParent().setLeft(candidate.getRight());
+            }else {
+                candidate.getParent().setRight(candidate.getRight());
+            }
+            if (Objects.nonNull(node.getLeft())){
+                node.getLeft().setParent(candidate);
+            }
+            node.getRight().setParent(candidate);
+            candidate.setLeft(node.getLeft());
+            candidate.setRight(node.getRight());
+            if (Objects.nonNull(node.getParent())){
+                if (node.getParent().getLeft() == node){
+                    node.getParent().setLeft(candidate);
+                }else {
+                    node.getParent().setRight(candidate);
+                }
+            }
+        }else if (Objects.nonNull(node.getLeft())){
+            candidate = node.getLeft();
+            if (Objects.nonNull(node.getParent())){
+                if (node.getParent().getLeft() == node){
+                    node.getParent().setLeft(candidate);
+                }else {
+                    node.getParent().setRight(candidate);
+                }
+            }
+        }else {
+            candidate = null;
+            if (Objects.nonNull(node.getParent())){
+                if (node.getParent().getLeft() == node){
+                    node.getParent().setLeft(candidate);
+                }else {
+                    node.getParent().setRight(candidate);
+                }
+            }
         }
 
-        TreeNode parent = node.getParent();
-        boolean isLeft = parent.getLeft() == node;
-        if (isLeft){
-            parent.setLeft(null);
-        }else {
-            parent.setRight(null);
+        if (root == node){
+            root = candidate;
         }
+
         return node.getData();
+    }
+
+
+    private TreeNode getMostLeftDescendant(TreeNode treeNode){
+        TreeNode result = treeNode.getRight();
+        while (Objects.nonNull(result.getLeft())){
+            result = result.getLeft();
+        }
+        return result;
     }
 
     private void updateHeight(TreeNode node){

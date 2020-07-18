@@ -8,26 +8,29 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Component
-public class DeleteActionListener implements ActionListener {
+public class ReloadActionListener implements ActionListener {
     @Autowired
     ShowPanel showPanel;
-
-    @Autowired
-    OptionPanel optionPanel;
-    @Autowired
-    IBinaryTree<Integer> binaryTree;
     @Autowired
     ExecutorService executorService;
+    @Autowired
+    IBinaryTree<Integer> binaryTree;
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
         executorService.submit(()->{
             try {
-                binaryTree.delete(optionPanel.getInputValue());
+                binaryTree.clear();
+                Random random = new Random();
+                random.ints(10,0,100)
+                        .forEach(i->binaryTree.insert(i));
+
                 SwingUtilities.invokeAndWait(()->{showPanel.repaint();});
                 SwingUtilities.invokeLater(()->{
                     showPanel.refreshTree();
@@ -38,6 +41,5 @@ public class DeleteActionListener implements ActionListener {
                 invocationTargetException.printStackTrace();
             }
         });
-
     }
 }

@@ -36,6 +36,7 @@ public class ShowPanel extends JPanel {
         Integer middle = this.getWidth()>>>1;
         Integer offset = ShowNodeBean.WIDTH>>>1;
         ShowNodeBean showNodeBean = new ShowNodeBean(middle-offset,10,treeNode.toString(),null);
+        showNodeBean.setColor(treeNode.getColor());
         treeNode.setShowNodeBean(showNodeBean);
         return showNodeBean;
     }
@@ -52,10 +53,12 @@ public class ShowPanel extends JPanel {
         boolean isLeft = treeNode.getParent().getLeft() == treeNode;
         if (isLeft){
             ShowNodeBean showNodeBean = new ShowNodeBean(parentShowNodeBean.getX()-offset, parentShowNodeBean.getY()+70,treeNode.toString(),parentShowNodeBean);
+            showNodeBean.setColor(treeNode.getColor());
             treeNode.setShowNodeBean(showNodeBean);
             return showNodeBean;
         }else {
             ShowNodeBean showNodeBean = new ShowNodeBean(parentShowNodeBean.getX()+offset, parentShowNodeBean.getY()+70,treeNode.toString(),parentShowNodeBean);
+            showNodeBean.setColor(treeNode.getColor());
             treeNode.setShowNodeBean(showNodeBean);
             return showNodeBean;
         }
@@ -75,7 +78,7 @@ public class ShowPanel extends JPanel {
     }
 
     private void drawNode(Graphics2D g2, ShowNodeBean showNodeBean){
-        g2.setColor(Color.PINK);
+        g2.setColor(showNodeBean.getColor());
         g2.fillRect(showNodeBean.getX(), showNodeBean.getY(),ShowNodeBean.WIDTH,ShowNodeBean.HEIGHT);
 
         g2.setColor(Color.black);

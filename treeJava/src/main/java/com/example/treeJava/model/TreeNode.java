@@ -3,11 +3,13 @@ package com.example.treeJava.model;
 import com.example.treeJava.ui.ShowNodeBean;
 import lombok.Data;
 
+import java.awt.*;
+
 @Data
 public class TreeNode<T> {
 
     T data;
-    boolean isRed;
+    Color color = Color.pink;
     int height = 0;
 
     TreeNode<T> left;

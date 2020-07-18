@@ -28,19 +28,23 @@ public class UIConfig {
     ShowPanel showPanel;
 
     @Bean("showFrame")
-    public JFrame initShowFrame(AddActionListener addActionListener, DeleteActionListener deleteActionListener){
+    public JFrame initShowFrame(AddActionListener addActionListener, DeleteActionListener deleteActionListener,
+                                ReloadActionListener reloadActionListener){
         showPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,1) );
         showPanel.setBackground(Color.decode("#D3D3D3"));
 
         JTextField input = new JTextField(16);
         JButton addButton = new JButton("Add");
         JButton rmButton = new JButton("Delete");
+        JButton reloadButton = new JButton("Reload");
         JButton nextButton = new JButton("Next");
         addButton.addActionListener(addActionListener);
         rmButton.addActionListener(deleteActionListener);
+        reloadButton.addActionListener(reloadActionListener);
         optionPanel.add(input);
         optionPanel.add(addButton);
         optionPanel.add(rmButton);
+        optionPanel.add(reloadButton);
         optionPanel.add(nextButton);
         optionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,1) );
         optionPanel.setInput(input);

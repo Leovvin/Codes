@@ -2,6 +2,8 @@ package com.example.treeJava.ui;
 
 import lombok.Data;
 
+import java.awt.*;
+
 @Data
 
 public class ShowNodeBean {
@@ -11,6 +13,7 @@ public class ShowNodeBean {
     int x,y;
     String data;
     ShowNodeBean parent;
+    Color color ;
 
     public ShowNodeBean(int x, int y, String data, ShowNodeBean parent) {
         this.x = x;
