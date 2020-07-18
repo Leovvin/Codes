@@ -11,6 +11,8 @@ import javax.swing.*;
 public class Command implements CommandLineRunner {
     @Autowired
     JFrame showFrame;
+    @Autowired
+    ShowPanel showPanel;
 
     @Override
     public void run(String... args) throws Exception {
@@ -20,6 +22,12 @@ public class Command implements CommandLineRunner {
             public void run() {
                 showFrame.setVisible(true);
                 showFrame.pack();
+            }
+        });
+        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
+            public void run() {
+                showPanel.refreshTree();
             }
         });
     }

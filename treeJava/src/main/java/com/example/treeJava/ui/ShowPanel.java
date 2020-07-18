@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
 @Component
@@ -26,7 +25,7 @@ public class ShowPanel extends JPanel {
 
     }
 
-    private ShowNode generateShowNode(TreeNode treeNode){
+    private ShowNodeBean generateShowNode(TreeNode treeNode){
         if (Objects.isNull(treeNode.getParent())){
             return generateRoot(treeNode);
         }else {
@@ -34,15 +33,16 @@ public class ShowPanel extends JPanel {
         }
     }
 
-    private ShowNode generateRoot(TreeNode treeNode){
+    private ShowNodeBean generateRoot(TreeNode treeNode){
         Integer middle = this.getWidth()>>>1;
-        ShowNode showNode = new ShowNode(middle-40,10,treeNode.toString());
-        treeNode.setShowNode(showNode);
-        return  showNode;
+        Integer offset = ShowNodeBean.WIDTH>>>1;
+        ShowNodeBean showNodeBean = new ShowNodeBean(middle-offset,10,treeNode.toString(),null);
+        treeNode.setShowNodeBean(showNodeBean);
+        return showNodeBean;
     }
 
-    private ShowNode generateChild(TreeNode treeNode){
-        ShowNode parentShowNode = treeNode.getParent().getShowNode();
+    private ShowNodeBean generateChild(TreeNode treeNode){
+        ShowNodeBean parentShowNodeBean = treeNode.getParent().getShowNodeBean();
         Integer level = 1;
         TreeNode tmp = treeNode;
         while (tmp.getParent() != binaryTree.getRoot()){
@@ -52,40 +52,44 @@ public class ShowPanel extends JPanel {
         Integer offset = SwingConsts.FRAME_WIDTH >>> level +1;
         boolean isLeft = treeNode.getParent().getLeft() == treeNode;
         if (isLeft){
-            ShowNode showNode = new ShowNode(parentShowNode.getX()-offset,parentShowNode.getY()+50,treeNode.toString());
-            treeNode.setShowNode(showNode);
-            return showNode;
+            ShowNodeBean showNodeBean = new ShowNodeBean(parentShowNodeBean.getX()-offset, parentShowNodeBean.getY()+70,treeNode.toString(),parentShowNodeBean);
+            treeNode.setShowNodeBean(showNodeBean);
+            return showNodeBean;
         }else {
-            ShowNode showNode = new ShowNode(parentShowNode.getX()+offset,parentShowNode.getY()+50,treeNode.toString());
-            treeNode.setShowNode(showNode);
-            return showNode;
+            ShowNodeBean showNodeBean = new ShowNodeBean(parentShowNodeBean.getX()+offset, parentShowNodeBean.getY()+70,treeNode.toString(),parentShowNodeBean);
+            treeNode.setShowNodeBean(showNodeBean);
+            return showNodeBean;
         }
     }
 
-    private void appendNode(Graphics2D g2,ShowNode parent,ShowNode node){
-        if (Objects.nonNull(parent)){
-            drawLineBetweenNodes(g2,parent,node);
+
+    private void drawLineBetweenNodes(Graphics2D g2, ShowNodeBean nodeBean){
+        if (Objects.isNull(nodeBean.getParent())){
+           return;
         }
-        drawNode(g2,node);
+
+        Integer offsetX= ShowNodeBean.WIDTH>>>1;
+        Integer offsetY = ShowNodeBean.HEIGHT;
+        ShowNodeBean parentBean = nodeBean.getParent();
+
+        g2.drawLine(parentBean.getX()+offsetX,parentBean.getY()+offsetY,nodeBean.getX()+offsetX,nodeBean.getY());
     }
 
-    private void drawLineBetweenNodes(Graphics2D g2,ShowNode parent,ShowNode node){
-
-    }
-
-    private void drawNode(Graphics2D g2,ShowNode showNode){
+    private void drawNode(Graphics2D g2, ShowNodeBean showNodeBean){
         g2.setColor(Color.PINK);
-        g2.fillRect(showNode.getX(),showNode.getY(),40,35);
+        g2.fillRect(showNodeBean.getX(), showNodeBean.getY(),ShowNodeBean.WIDTH,ShowNodeBean.HEIGHT);
 
         g2.setColor(Color.black);
 
         {
-            Point2D loc = new Point(showNode.getX()+10,showNode.getY()+13);
+            Point2D loc = new Point(showNodeBean.getX()+10, showNodeBean.getY()+13);
             Font font = g2.getFont();
             FontRenderContext frc = g2.getFontRenderContext();
-            TextLayout layout = new TextLayout(showNode.getData(), font, frc);
+            TextLayout layout = new TextLayout(showNodeBean.getData(), font, frc);
             layout.draw(g2, (float)loc.getX(), (float)loc.getY());
         }
+
+        drawLineBetweenNodes(g2,showNodeBean);
 
     }
 }
