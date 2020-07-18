@@ -22,7 +22,6 @@ public class ShowPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         binaryTree.traversal(treeNode -> drawNode(g2,generateShowNode(treeNode)));
-
     }
 
     private ShowNodeBean generateShowNode(TreeNode treeNode){

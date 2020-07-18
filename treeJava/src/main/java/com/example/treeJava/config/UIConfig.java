@@ -13,6 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -59,6 +61,12 @@ public class UIConfig {
         random.ints(10,0,100)
                 .forEach(i->tree.insert(i));
         return tree;
+    }
+
+    @Bean
+    public ExecutorService executorService(){
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        return executorService;
     }
 
 }
