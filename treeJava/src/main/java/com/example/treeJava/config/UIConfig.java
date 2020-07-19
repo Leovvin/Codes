@@ -1,21 +1,18 @@
 package com.example.treeJava.config;
 
 import com.example.treeJava.model.AVLTree;
+import com.example.treeJava.model.BinarySortedTree;
 import com.example.treeJava.model.IBinaryTree;
 import com.example.treeJava.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import sun.jvm.hotspot.ui.GraphicsUtilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Stream;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
