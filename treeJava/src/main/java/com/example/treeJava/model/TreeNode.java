@@ -10,7 +10,6 @@ public class TreeNode<T> {
 
     T data;
     Color color = Color.pink;
-    int height = 0;
 
     TreeNode<T> left;
     TreeNode<T> right;
@@ -29,7 +28,7 @@ public class TreeNode<T> {
 
     @Override
     public String toString(){
-        return getData().toString()+":"+getHeight();
+        return getData().toString();
     }
 
 }

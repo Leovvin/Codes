@@ -9,32 +9,27 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
 
     @Override
     public TreeNode<T> insert(T t) {
-        if (Objects.isNull(root)){
-            return addRoot(t);
-        }
-
         if (Objects.nonNull(search(t))){
             return null;
         }
-        TreeNode node ;
-        if (succeed.getData().compareTo(t)<0){
-            node = new TreeNode(t,succeed);
-            succeed.setRight(node);
-        }else {
-            node = new TreeNode(t,succeed);
-            succeed.setLeft(node);
+
+        TreeNode node = createNode(t);
+        if (Objects.isNull(root)){
+            root = node;
+            return root;
         }
 
-        updateHeight(node);
+        if (succeed.getData().compareTo(t)<0){
+            node.setParent(succeed);
+            succeed.setRight(node);
+        }else {
+            node.setParent(succeed);
+            succeed.setLeft(node);
+        }
 
         return node;
     }
 
-    private TreeNode<T> addRoot(T t) {
-        root = new TreeNode<>(t);
-        root.setHeight(0);
-        return root;
-    }
 
     @Override
     public void clear() {
@@ -63,6 +58,11 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
         return returnVal;
     }
 
+    protected TreeNode createNode(T t){
+        TreeNode node = new TreeNode(t);
+        return node;
+    }
+
     private void doDeleteNode(TreeNode node){
         if (Objects.nonNull(node.getRight())){
             TreeNode child = node.getRight();
@@ -89,7 +89,6 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
                 node.getParent().setRight(null);
             }
         }
-        updateHeight(node.getParent());
     }
 
     private boolean isLeftChild(TreeNode node){
@@ -109,23 +108,7 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
         return result;
     }
 
-    private void updateHeight(TreeNode node){
-        while (Objects.nonNull(node)){
-            Integer newHeight = Math.max(getHeight(node.getLeft()),getHeight(node.getRight()))+1;
-            if (node.getHeight() == newHeight && newHeight != 0){
-                break;
-            }
-            node.setHeight(newHeight);
-            node = node.getParent();
-        }
-    }
 
-    private Integer getHeight(TreeNode node){
-        if (Objects.isNull(node)){
-            return -1;
-        }
-        return node.getHeight();
-    }
 
     public TreeNode search(T t){
         if (Objects.isNull(root)){
