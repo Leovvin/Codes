@@ -5,7 +5,8 @@ import java.util.Objects;
 
 public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
 
-    TreeNode<T> succeed;
+    protected TreeNode<T> _hot;
+    private int size = 0;
 
     @Override
     public TreeNode<T> insert(T t) {
@@ -19,14 +20,14 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
             return root;
         }
 
-        if (succeed.getData().compareTo(t)<0){
-            node.setParent(succeed);
-            succeed.setRight(node);
+        if (_hot.getData().compareTo(t)<0){
+            node.setParent(_hot);
+            _hot.setRight(node);
         }else {
-            node.setParent(succeed);
-            succeed.setLeft(node);
+            node.setParent(_hot);
+            _hot.setLeft(node);
         }
-
+        size++;
         return node;
     }
 
@@ -53,7 +54,7 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
             candidate=node;
         }
         doDeleteNode(candidate);
-
+        size--;
         TreeNode returnVal = candidate.getParent();
         return returnVal;
     }
@@ -91,7 +92,7 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
         }
     }
 
-    private boolean isLeftChild(TreeNode node){
+    protected boolean isLeftChild(TreeNode node){
         if (node == root){
             return false;
         }
@@ -114,16 +115,16 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
         if (Objects.isNull(root)){
             return null;
         }
-        TreeNode<T> result = succeed = root;
+        TreeNode<T> result = _hot = root;
         while (Objects.nonNull(result)){
             if (result.getData().equals(t)){
                 return result;
             }else if (result.getData().compareTo(t) < 0){
-                succeed = result;
-                result = succeed.getRight();
+                _hot = result;
+                result = _hot.getRight();
             }else {
-                succeed = result;
-                result = succeed.getLeft();
+                _hot = result;
+                result = _hot.getLeft();
             }
         }
         return null;
