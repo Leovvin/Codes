@@ -12,7 +12,10 @@ public class AVLTree<T extends Comparable> extends BinarySortedTree<T> {
             if (isBalance(cur)){
                 updateHeight(cur);
             }else {
-                rotateAt(tallerChild(tallerChild(cur)));
+                AVLTreeNode parent = cur.getParent();
+                boolean isLeftChild = isLeftChild(cur);
+                AVLTreeNode node1=rotateAt(tallerChild(tallerChild(cur)));
+                setChild(parent,node1,isLeftChild);
                 break;
             }
         }
@@ -30,29 +33,40 @@ public class AVLTree<T extends Comparable> extends BinarySortedTree<T> {
         return new AVLTreeNode(t);
     }
 
-    private void rotateAt(AVLTreeNode node){
+    private AVLTreeNode rotateAt(AVLTreeNode node){
         AVLTreeNode p = node.getParent();
         AVLTreeNode g = p.getParent();
+
         if (isLeftChild(p)){
             if (isLeftChild(node)){
                 p.setParent(g.getParent());
-                connect34(node,p,g,node.getLeft(),node.getRight(),p.getRight(),g.getRight());
+                return connect34(node,p,g,node.getLeft(),node.getRight(),p.getRight(),g.getRight());
             }else {
                 node.setParent(g.getParent());
-                connect34(p,node,g,p.getLeft(),node.getLeft(),node.getRight(),g.getRight());
+                return connect34(p,node,g,p.getLeft(),node.getLeft(),node.getRight(),g.getRight());
             }
         }else {
             if (isLeftChild(node)){
                 node.setParent(g.getParent());
-                connect34(g,node,p,g.getLeft(),node.getLeft(),node.getRight(),p.getRight());
+                return connect34(g,node,p,g.getLeft(),node.getLeft(),node.getRight(),p.getRight());
             }else {
                 p.setParent(g.getParent());
-                connect34(g,p,node,g.getLeft(),p.getLeft(),node.getLeft(),node.getRight());
+                return connect34(g,p,node,g.getLeft(),p.getLeft(),node.getLeft(),node.getRight());
             }
         }
     }
 
-    private void connect34(AVLTreeNode a,AVLTreeNode b,AVLTreeNode c
+    private void setChild(AVLTreeNode p,AVLTreeNode n,boolean isLeft){
+        if (Objects.nonNull(p)){
+            if (isLeft){
+                p.setLeft(n);
+            }else {
+                p.setRight(n);
+            }
+        }
+    }
+
+    private AVLTreeNode connect34(AVLTreeNode a,AVLTreeNode b,AVLTreeNode c
             ,AVLTreeNode t1,AVLTreeNode t2,AVLTreeNode t3,AVLTreeNode t4){
         a.setLeft(t1);
         if (Objects.nonNull(t1)){
@@ -81,6 +95,7 @@ public class AVLTree<T extends Comparable> extends BinarySortedTree<T> {
         if(Objects.isNull(b.getParent())){
             root = b;
         }
+        return b;
     }
 
     private AVLTreeNode tallerChild(AVLTreeNode node){

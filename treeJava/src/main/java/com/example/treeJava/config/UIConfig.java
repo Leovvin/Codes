@@ -59,7 +59,7 @@ public class UIConfig {
     public IBinaryTree<Integer> initBinaryTree(){
         IBinaryTree<Integer> tree = new AVLTree();
         Random random = new Random();
-        random.ints(10,0,100)
+        random.ints(10,0,500)
                 .forEach(i->tree.insert(i));
         return tree;
     }

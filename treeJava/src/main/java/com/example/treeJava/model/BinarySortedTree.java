@@ -1,8 +1,11 @@
 package com.example.treeJava.model;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Objects;
 
+@Slf4j
 public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
 
     protected TreeNode<T> _hot;
@@ -11,6 +14,7 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
     @Override
     public TreeNode<T> insert(T t) {
         if (Objects.nonNull(search(t))){
+            log.info("tree have value:"+t+",skip insert");
             return null;
         }
 

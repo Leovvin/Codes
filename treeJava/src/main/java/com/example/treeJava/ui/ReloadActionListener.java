@@ -1,6 +1,7 @@
 package com.example.treeJava.ui;
 
 import com.example.treeJava.model.IBinaryTree;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 
 @Component
+@Slf4j
 public class ReloadActionListener implements ActionListener {
     @Autowired
     ShowPanel showPanel;
@@ -22,13 +24,13 @@ public class ReloadActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        log.info("reload tree start");
 
         executorService.submit(()->{
             try {
                 binaryTree.clear();
                 Random random = new Random();
-                random.ints(10,0,100)
+                random.ints(10,0,500)
                         .forEach(i->binaryTree.insert(i));
 
                 SwingUtilities.invokeAndWait(()->{showPanel.repaint();});
