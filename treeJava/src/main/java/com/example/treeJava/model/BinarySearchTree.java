@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Objects;
 
 @Slf4j
-public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
+public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> {
 
     protected TreeNode<T> _hot;
     private int size = 0;
@@ -133,6 +133,84 @@ public class BinarySortedTree<T extends Comparable> extends BinaryTree<T> {
         }
         return null;
     }
+    protected TreeNode rotateAt(TreeNode node){
+        TreeNode p = node.getParent();
+        TreeNode g = p.getParent();
+
+        if (isLeftChild(p)){
+            if (isLeftChild(node)){
+                p.setParent(g.getParent());
+                return connect34(node,p,g,node.getLeft(),node.getRight(),p.getRight(),g.getRight());
+            }else {
+                node.setParent(g.getParent());
+                return connect34(p,node,g,p.getLeft(),node.getLeft(),node.getRight(),g.getRight());
+            }
+        }else {
+            if (isLeftChild(node)){
+                node.setParent(g.getParent());
+                return connect34(g,node,p,g.getLeft(),node.getLeft(),node.getRight(),p.getRight());
+            }else {
+                p.setParent(g.getParent());
+                return connect34(g,p,node,g.getLeft(),p.getLeft(),node.getLeft(),node.getRight());
+            }
+        }
+    }
+    protected TreeNode connect34(TreeNode a,TreeNode b,TreeNode c
+            ,TreeNode t1,TreeNode t2,TreeNode t3,TreeNode t4){
+        a.setLeft(t1);
+        if (Objects.nonNull(t1)){
+            t1.setParent(a);
+        }
+        a.setRight(t2);
+        if (Objects.nonNull(t2)){
+            t2.setParent(a);
+        }
+        updateHeight(a);
+
+        c.setLeft(t3);
+        if (Objects.nonNull(t3)){
+            t3.setParent(c);
+        }
+        c.setRight(t4);
+        if (Objects.nonNull(t4)){
+            t4.setParent(c);
+        }
+        updateHeight(c);
 
 
+        b.setLeft(a);a.setParent(b);
+        b.setRight(c);c.setParent(b);
+        updateHeight(b);
+        if(Objects.isNull(b.getParent())){
+            root = b;
+        }
+        return b;
+    }
+    protected void updateHeight(TreeNode node){
+        Integer newHeight = Math.max(getHeight(node.getLeft()),getHeight(node.getRight()))+1;
+        node.setHeight(newHeight);
+    }
+    protected Integer getHeight(TreeNode node){
+        if (Objects.isNull(node)){
+            return -1;
+        }
+        return node.getHeight();
+    }
+
+
+    protected TreeNode tallerChild(TreeNode node){
+        return getHeight(node.getLeft())>getHeight(node.getRight())?node.getLeft():
+                getHeight(node.getLeft())<getHeight(node.getRight())?node.getRight():
+                        isLeftChild(node)?node.getLeft():node.getRight();
+
+    }
+    protected void setChild(TreeNode p,TreeNode n,boolean isLeft){
+        if (Objects.nonNull(p)){
+            if (isLeft){
+                p.setLeft(n);
+            }else {
+                p.setRight(n);
+            }
+        }
+    }
 }

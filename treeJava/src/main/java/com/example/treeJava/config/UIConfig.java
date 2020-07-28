@@ -1,7 +1,6 @@
 package com.example.treeJava.config;
 
 import com.example.treeJava.model.AVLTree;
-import com.example.treeJava.model.BinarySortedTree;
 import com.example.treeJava.model.IBinaryTree;
 import com.example.treeJava.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;

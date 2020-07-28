@@ -79,7 +79,7 @@ public class ShowPanel extends JPanel {
 
     private void drawNode(Graphics2D g2, ShowNodeBean showNodeBean){
         g2.setColor(showNodeBean.getColor());
-        g2.fillRect(showNodeBean.getX(), showNodeBean.getY(),ShowNodeBean.WIDTH,ShowNodeBean.HEIGHT);
+        g2.drawRect(showNodeBean.getX(), showNodeBean.getY(),ShowNodeBean.WIDTH,ShowNodeBean.HEIGHT);
 
         g2.setColor(Color.black);
 

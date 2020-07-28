@@ -9,7 +9,9 @@ import java.awt.*;
 public class TreeNode<T> {
 
     T data;
-    Color color = Color.pink;
+    Color color = Color.blue;
+
+    int height = 0;
 
     TreeNode<T> left;
     TreeNode<T> right;
@@ -28,7 +30,7 @@ public class TreeNode<T> {
 
     @Override
     public String toString(){
-        return getData().toString();
+        return getData().toString()+":"+getHeight();
     }
 
 }
