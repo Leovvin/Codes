@@ -63,10 +63,6 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> {
         return returnVal;
     }
 
-    protected TreeNode createNode(T t){
-        TreeNode node = new TreeNode(t);
-        return node;
-    }
 
     private void doDeleteNode(TreeNode node){
         if (Objects.nonNull(node.getRight())){

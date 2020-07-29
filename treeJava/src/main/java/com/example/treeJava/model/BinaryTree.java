@@ -16,6 +16,11 @@ public abstract class BinaryTree<T> implements IBinaryTree<T> {
         doPreOrderTraversal(visitor,root);
     }
 
+    protected TreeNode createNode(T t){
+        TreeNode node = new TreeNode(t);
+        return node;
+    }
+
     private void doPreOrderTraversal(Visitor visitor,TreeNode treeNode){
         if (Objects.isNull(treeNode)){
             return;

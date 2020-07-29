@@ -2,9 +2,9 @@ package com.example.treeJava.model;
 
 import java.awt.*;
 
-public class RBTreeNode<T> extends TreeNode<T> {
+public class RBNode<T> extends TreeNode<T> {
 
-    public RBTreeNode(T t){
+    public RBNode(T t){
         super(t);
         isRed=true;
         this.color = Color.red;
