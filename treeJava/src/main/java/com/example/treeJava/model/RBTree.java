@@ -24,11 +24,11 @@ public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
 
     private void balanceInsert(RBNode node){
         for (RBNode x=node,p,pp,ppl,ppr;;){
-            if (x == root){
+            if ((p=x.getParent())==null){
                 x.setRed(false);
                 return;
             }
-            if (!(p=x.getParent()).isRed()){
+            if (!p.isRed()){
                 return;
             }
             if (p==(ppl = (pp=p.getParent()).getLeft())){
