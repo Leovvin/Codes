@@ -16,7 +16,7 @@ public class RBNode<T> extends TreeNode<T> {
     }
 
     public void setRed(boolean red) {
-        if (isRed){
+        if (red){
             this.color= Color.red;
         }else {
             this.color= Color.blue;
@@ -37,5 +37,10 @@ public class RBNode<T> extends TreeNode<T> {
     @Override
     public RBNode<T> getParent() {
         return (RBNode)super.getParent();
+    }
+
+    @Override
+    public String toString() {
+        return this.getData().toString();
     }
 }

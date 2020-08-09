@@ -28,6 +28,14 @@ public class TreeNode<T> {
         this.parent = parent;
     }
 
+    public TreeNode getRoot(){
+        TreeNode tmp = this;
+        while (tmp.getParent() != null){
+            tmp = tmp.getParent();
+        }
+        return tmp;
+    }
+
     @Override
     public String toString(){
         return getData().toString()+":"+getHeight();

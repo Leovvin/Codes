@@ -2,6 +2,7 @@ package com.example.treeJava.config;
 
 import com.example.treeJava.model.AVLTree;
 import com.example.treeJava.model.IBinaryTree;
+import com.example.treeJava.model.RBTree;
 import com.example.treeJava.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -56,7 +57,7 @@ public class UIConfig {
 
     @Bean
     public IBinaryTree<Integer> initBinaryTree(){
-        IBinaryTree<Integer> tree = new AVLTree();
+        IBinaryTree<Integer> tree = new RBTree<>();
         Random random = new Random();
         random.ints(10,0,500)
                 .forEach(i->tree.insert(i));

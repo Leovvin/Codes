@@ -30,7 +30,7 @@ public class ReloadActionListener implements ActionListener {
             try {
                 binaryTree.clear();
                 Random random = new Random();
-                random.ints(10,0,500)
+                random.ints(20,0,500)
                         .forEach(i->binaryTree.insert(i));
 
                 SwingUtilities.invokeAndWait(()->{showPanel.repaint();});
