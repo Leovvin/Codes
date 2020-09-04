@@ -1,5 +1,7 @@
 package com.example.treeJava.model;
 
+import java.util.Objects;
+
 public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
 
     @Override
@@ -16,8 +18,47 @@ public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
 
     @Override
     public RBNode<T> delete(T t) {
-        RBNode node = (RBNode)super.delete(t);
-        balanceDelete(node);
+        RBNode<T> node = (RBNode<T>)super.search(t);
+
+        RBNode<T> replace,sub;
+        if (Objects.nonNull(node.getLeft())){
+            replace = node;
+            sub = node.getLeft();
+        }else if (Objects.nonNull(node.getRight())){
+            replace = node;
+            sub = node.getRight();
+        }else {
+            replace = node.getRight();
+            while (Objects.nonNull(replace.getLeft())){
+                replace = replace.getLeft();
+            }
+            sub = replace.getRight();
+        }
+
+        if (replace == root){
+            root = sub;
+            sub.setRed(false);
+            sub.setParent(null);
+            return replace;
+        }
+        boolean isRed = replace.isRed();
+
+        if(replace == replace.getParent().getLeft()){
+            replace.getParent().setLeft(sub);
+        }else {
+            replace.getParent().setRight(sub);
+        }
+
+        if (replace == node){
+            sub.setParent(replace.getParent());
+        }else {
+            if (node == replace.getParent()){
+
+            }
+        }
+
+
+
         return node;
     }
 
