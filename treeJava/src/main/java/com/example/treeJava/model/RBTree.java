@@ -1,5 +1,6 @@
 package com.example.treeJava.model;
 
+import javax.xml.soap.Node;
 import java.util.Objects;
 
 public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
@@ -58,9 +59,13 @@ public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
                     node.getParent().setRight(replace);
                 }
             }
+            if(Objects.nonNull(node.getLeft())){
+                node.getLeft().setParent(replace);
+            }
+
             replace.setParent(node.getParent());
             replace.setLeft(node.getLeft());
-            replace.setColor(node.getColor());
+            replace.setRed(node.isRed());
         }else {
             if (Objects.nonNull(node.getParent())) {
                 if (node.getParent().getLeft() == node) {
@@ -68,13 +73,62 @@ public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
                 } else {
                     node.getParent().setRight(replace);
                 }
+            }
+            if (Objects.nonNull(node.getLeft())){
+                node.getLeft().setParent(replace);
+            }
+            if (Objects.nonNull(node.getRight())){
+                node.getRight().setParent(replace);
+            }
 
+            replace.getParent().setLeft(replace.getRight());
+            if (Objects.nonNull(replace.getRight())){
+                replace.getRight().setParent(replace.getParent());
+            }
+
+            replace.setParent(node.getParent());
+            replace.setLeft(node.getLeft());
+            replace.setRight(node.getRight());
+            replace.setRed(node.isRed());
+        }
+        if (Objects.nonNull(root.getParent())){
+            while (Objects.nonNull(root.getParent())){
+                root = root.getParent();
+            }
+        }
+        if (isRed){
+            return node;
+        }
+
+        RBNode temp = sub;
+        while (temp!= root){
+            if (temp.getParent().getLeft() == temp){
+                RBNode sibling = temp.getParent().getRight();
+                if (sibling.isRed()){
+                    temp.getParent().setRed(true);
+                    sibling.setRed(false);
+                    rotateLeft(temp.getParent());
+                    sibling = temp.getParent().getRight();
+                }
+
+                if (isNodeRed(sibling.getLeft())&& isNodeRed(sibling.getRight())){
+
+                }
+
+            }else {
 
             }
         }
 
 
         return node;
+    }
+
+    private boolean isNodeRed(RBNode node){
+        if (Objects.isNull(node)){
+            return false;
+        }
+        return node.isRed();
     }
 
     @Override
@@ -132,9 +186,6 @@ public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
         }
     }
 
-    private void balanceDelete(RBNode node) {
-
-    }
 
     private void rotateLeft(RBNode node) {
         RBNode r, p;
