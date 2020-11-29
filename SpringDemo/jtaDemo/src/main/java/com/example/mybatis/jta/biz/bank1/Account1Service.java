@@ -24,20 +24,26 @@ public class Account1Service {
 
     @Transactional
     public boolean increaseAsset(int id,int income){
-        Account1 account1 = mapper.findAccountForUpdate(id);
+        Account1 account1 = mapper.findAccount(id);
         int asset = account1.getAsset()+income;
         account1.setAsset(asset);
-        return mapper.update(account1)==1;
+        if (mapper.update(account1)==0){
+            throw new RuntimeException("account have been changed while transaction running");
+        }
+        return true;
     }
 
     @Transactional
     public boolean decreaseAsset(int id,int income){
-        Account1 account1 = mapper.findAccountForUpdate(id);
+        Account1 account1 = mapper.findAccount(id);
         int asset = account1.getAsset()-income;
         if (asset<0){
             throw new RuntimeException("asset can not less than 0");
         }
         account1.setAsset(asset);
-        return mapper.update(account1)==1;
+        if (mapper.update(account1)==0){
+            throw new RuntimeException("account have been changed while transaction running");
+        }
+        return true;
     }
 }

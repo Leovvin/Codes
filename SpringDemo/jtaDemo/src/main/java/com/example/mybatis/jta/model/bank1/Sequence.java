@@ -5,9 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Account1 {
-    Integer id;
+public class Sequence {
     String name;
-    Integer asset;
-    Integer version;
+    Integer value;
+    Integer step;
 }

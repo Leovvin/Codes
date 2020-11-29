@@ -5,6 +5,7 @@
         <id column="account_id" property="id"></id>
         <result column="name" property="name"></result>
         <result column="asset" property="asset"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="findAccount" resultMap="findByIdResult">
         select * from account where account_id = #{id}
@@ -12,10 +13,7 @@
     <insert id="create" useGeneratedKeys="true" keyColumn="account_id" keyProperty="id">
         insert account (name,asset) values (#{name},#{asset})
     </insert>
-    <select id="findAccountForUpdate" resultMap="findByIdResult">
-        select * from account where account_id = #{id} for update
-    </select>
     <update id="update">
-        update account set asset=#{asset} where account_id=#{id}
+        update account set asset=#{asset},version=#{version}+1 where account_id=#{id} and version=#{version}
     </update>
 </mapper>
