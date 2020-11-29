@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.mybatis.jta.mapper.bank1">
+<mapper namespace="com.example.mybatis.jta.mapper.bank1.Account1Mapper">
+    <resultMap id="findByIdResult" type="com.example.mybatis.jta.model.bank1.Account1">
+        <id column="account_id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="asset" property="asset"/>
+    </resultMap>
+    <select id="findAccount" resultMap="findByIdResult">
+        select * from account where account_id = #{id}
+    </select>
+    <insert id="create" useGeneratedKeys="true" keyColumn="account_id" keyProperty="id">
+        insert account (name,asset) values (#{name},#{asset})
+    </insert>
+    <select id="findAccountForUpdate" resultMap="findByIdResult">
+        select * from account where account_id = #{id} for update
+    </select>
+    <update id="update">
+        update account set asset=#{asset} where account_id=#{id}
+    </update>
 </mapper>

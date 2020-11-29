@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Account1 {
-    Integer accountId;
+    Integer id;
     String name;
     Integer asset;
 }
