@@ -1,6 +1,6 @@
-package com.example.mybatis.jta.mapper.bank1;
+package com.example.mybatis.jta.mapper.datasource1;
 
-import com.example.mybatis.jta.model.bank1.Account1;
+import com.example.mybatis.jta.model.datasource1.Account1;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

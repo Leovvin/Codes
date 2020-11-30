@@ -1,7 +1,7 @@
-package com.example.mybatis.jta.biz.bank1;
+package com.example.mybatis.jta.biz.datasource1;
 
-import com.example.mybatis.jta.mapper.bank1.Account1Mapper;
-import com.example.mybatis.jta.model.bank1.Account1;
+import com.example.mybatis.jta.mapper.datasource1.Account1Mapper;
+import com.example.mybatis.jta.model.datasource1.Account1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

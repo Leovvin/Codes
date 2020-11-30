@@ -1,4 +1,4 @@
-package com.example.mybatis.jta.model.bank2;
+package com.example.mybatis.jta.model.datasource2;
 
 import lombok.Getter;
 import lombok.Setter;

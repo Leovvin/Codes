@@ -1,4 +1,4 @@
-package com.example.mybatis.jta.mapper.bank1;
+package com.example.mybatis.jta.mapper.datasource1;
 
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.mybatis.jta.mapper.bank1.SequenceMapper">
-    <resultMap id="findByIdResult" type="com.example.mybatis.jta.model.bank1.Sequence">
-        <id column="name" property="name"></id>
-        <result column="value" property="value"></result>
-        <result column="step" property="step"/>
+<mapper namespace="com.example.mybatis.jta.mapper.datasource1.SequenceMapper">
+    <resultMap id="findByIdResult" type="com.example.mybatis.jta.model.datasource1.Sequence">
+        <id column="seq_name" property="name"></id>
+        <result column="current_val" property="value"></result>
+        <result column="increment_val" property="step"/>
     </resultMap>
 
     <update id="increase">
-        update sequence set value=value+1 where name=#{name}
+        update sequence set current_val=current_val+1 where seq_name=#{name}
     </update>
 </mapper>
