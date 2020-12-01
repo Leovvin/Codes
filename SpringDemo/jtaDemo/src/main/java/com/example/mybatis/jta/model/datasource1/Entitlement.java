@@ -7,6 +7,6 @@ public class Entitlement {
 
     int entitlementId;
     int productId;
-    String name;
+    int customerId;
     int status;
 }
