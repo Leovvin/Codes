@@ -11,4 +11,8 @@ public interface Account1Mapper {
     int create(Account1 account);
 
     int update(Account1 account1);
+
+    int increase(int id,int income);
+
+    int decrease(int id,int outcome);
 }

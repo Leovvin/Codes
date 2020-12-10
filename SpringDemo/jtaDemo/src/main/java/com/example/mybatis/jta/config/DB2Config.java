@@ -8,22 +8,20 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.util.ResourceUtils;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Data
-@ConfigurationProperties(prefix = "spring.datasource.db1")
+@ConfigurationProperties(prefix = "spring.datasource.db2")
 @Configuration
-@MapperScan(basePackages = "com.example.mybatis.jta.mapper.datasource1", sqlSessionTemplateRef = "database1SqlSessionTemplate")
-public class DB1Config {
+@MapperScan(basePackages = "com.example.mybatis.jta.mapper.datasource2", sqlSessionTemplateRef = "database2SqlSessionTemplate")
+public class DB2Config {
 
     String url;
     String username;
@@ -31,9 +29,7 @@ public class DB1Config {
     int maxTotal;
     String mapperLocations;
 
-
-
-    @Bean(name = "database1")
+    @Bean(name = "database2")
     public DataSource getXADataSource() throws SQLException {
         MysqlXADataSource dataSource = new MysqlXADataSource();
         dataSource.setURL(url);
@@ -43,14 +39,14 @@ public class DB1Config {
 
         AtomikosDataSourceBean xaDatasource = new AtomikosDataSourceBean();
         xaDatasource.setXaDataSource(dataSource);
-        xaDatasource.setUniqueResourceName("database1");
+        xaDatasource.setUniqueResourceName("database2");
         xaDatasource.setMaxPoolSize(maxTotal);
         xaDatasource.setMinPoolSize(3);
         return xaDatasource;
     }
 
-    @Bean (name="database1SqlSessionFactory")
-    public SqlSessionFactory user1SqlSessionTemplate() throws Exception {
+    @Bean (name="database2SqlSessionFactory")
+    public SqlSessionFactory user2SqlSessionTemplate() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         MybatisProperties mybatisProperties = new MybatisProperties();
         String[] locations = {mapperLocations};
@@ -60,9 +56,9 @@ public class DB1Config {
         return bean.getObject();
     }
 
-    @Bean(name = "database1SqlSessionTemplate")
+    @Bean(name = "database2SqlSessionTemplate")
     public SqlSessionTemplate testSqlSessionTemplate() throws Exception {
-        return new SqlSessionTemplate(user1SqlSessionTemplate());
+        return new SqlSessionTemplate(user2SqlSessionTemplate());
     }
 
 }
