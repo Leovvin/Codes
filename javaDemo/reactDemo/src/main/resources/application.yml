@@ -1,7 +1,7 @@
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/demo
-    username: root
-    password: root123!@#
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
 
 

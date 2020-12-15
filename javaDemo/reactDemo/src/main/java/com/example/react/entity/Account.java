@@ -12,6 +12,7 @@ public class Account {
     @Id
     Integer id;
     String name;
+    Integer asset;
     LocalDateTime createTime;
     LocalDateTime updateTime;
 }
