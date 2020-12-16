@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
 import javax.transaction.Transactional;
 
@@ -29,11 +30,10 @@ public class AccountService {
     public Mono<Boolean> exchange(Integer sourceId,Integer targetId,int value){
         Mono<Account> sourceMono = decreaseAccount(sourceId,value);
         Mono<Account> targetMono = increaseAccount(targetId,value);
-        Flux<Account> accountFlux=targetMono.concatWith(sourceMono);
 
-        return Mono.<Boolean>create(sink->{
-            accountFlux.subscribe(a->sink.success(),e->sink.error(e));
-        });
+        Mono<Tuple2<Account,Account>> accountPub =targetMono.zipWith(sourceMono);
+
+        return Mono.usingWhen(accountPub,tuple->Mono.just(true),tuple->Mono.just(tuple));
     }
 
     @Transactional

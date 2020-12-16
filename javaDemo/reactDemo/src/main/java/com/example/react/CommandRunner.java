@@ -23,6 +23,8 @@ public class CommandRunner implements CommandLineRunner {
 
         accountService.exchange(1,2,40).subscribe(b->{
             System.out.println(b);
+        },e->{
+            System.out.println(e);
         });
 //
 //        accountService.findAll().subscribe(account -> {
