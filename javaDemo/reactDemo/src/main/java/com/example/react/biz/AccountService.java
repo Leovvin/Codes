@@ -24,10 +24,46 @@ public class AccountService {
     public Flux<Account> findAll(){
         return repository.findAll();
     }
+
     @Transactional
-    public Mono<Integer> exchange(Integer sourceId,Integer targetId,int value){
+    public Mono<Boolean> exchange(Integer sourceId,Integer targetId,int value){
+        Mono<Account> sourceMono = decreaseAccount(sourceId,value);
+        Mono<Account> targetMono = increaseAccount(targetId,value);
+        Flux<Account> accountFlux=targetMono.concatWith(sourceMono);
 
+        return Mono.<Boolean>create(sink->{
+            accountFlux.subscribe(a->sink.success(),e->sink.error(e));
+        });
+    }
 
-        return repository.increaseAsset(sourceId,value);
+    @Transactional
+    public Mono<Account> decreaseAccount(Integer accountId,int value){
+        Mono<Account> accountMono = repository.findById(accountId);
+
+        return Mono.usingWhen(accountMono,account->{
+            if (account.getAsset()-value>0){
+                account.setAsset(account.getAsset()-value);
+                return repository.save(account);
+            }else {
+                return Mono.error(new RuntimeException("asset can not be negative"));
+            }
+
+        },account->Mono.just(account));
+
+    }
+
+    @Transactional
+    public Mono<Account> increaseAccount(Integer accountId,int value){
+        Mono<Account> accountMono = repository.findById(accountId);
+
+        return Mono.usingWhen(accountMono,account->{
+            account.setAsset(account.getAsset()+value);
+            return repository.save(account);
+        },account->Mono.just(account));
+    }
+
+    @Transactional
+    public Mono<Account> save(Account account){
+        return repository.save(account);
     }
 }

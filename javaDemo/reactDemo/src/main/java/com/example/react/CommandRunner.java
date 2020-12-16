@@ -19,12 +19,14 @@ public class CommandRunner implements CommandLineRunner {
     AccountService accountService;
     @Override
     public void run(String... args) throws Exception {
-        accountService.exchange(1,2,10).subscribe(b->{
+
+
+        accountService.exchange(1,2,40).subscribe(b->{
             System.out.println(b);
         });
-
-        accountService.findAll().subscribe(account -> {
-            System.out.println(account.getAsset());
-        });
+//
+//        accountService.findAll().subscribe(account -> {
+//            System.out.println(account.getAsset());
+//        });
     }
 }

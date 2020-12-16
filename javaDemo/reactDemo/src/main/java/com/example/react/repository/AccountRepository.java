@@ -11,7 +11,6 @@ import reactor.core.publisher.Mono;
 public interface AccountRepository extends R2dbcRepository<Account,Integer> {
 
     @Query("update Account set asset=asset+?2 where id = ?1")
-    @Modifying
     Mono<Integer> increaseAsset(Integer id,int value);
 
     @Query("update Account set asset=asset-?2 where id = ?1 and asset-?2>0")

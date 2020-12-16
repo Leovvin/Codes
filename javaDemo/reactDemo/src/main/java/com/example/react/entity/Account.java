@@ -1,13 +1,13 @@
 package com.example.react.entity;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
+@Entity(name = "account")
 public class Account {
     @Id
     Integer id;
