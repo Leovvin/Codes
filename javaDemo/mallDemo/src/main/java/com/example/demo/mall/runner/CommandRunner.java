@@ -34,7 +34,11 @@ public class CommandRunner implements CommandLineRunner {
         @Override
         public void run() {
             while (true){
-                inventoryService.increaseStock(1l,1);
+                boolean decreaseSucc = inventoryService.decreaseStockForUpdate(1l,1);
+                if (!decreaseSucc){
+                    break;
+                }
+
             }
         }
     }
