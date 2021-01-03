@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class ResponseEntity<T> {
     boolean isSuccess;
+    
     List<ErrorMsg> errors;
     T data;
     ResponseEntity(T data){
