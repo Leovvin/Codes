@@ -9,6 +9,13 @@ import org.springframework.stereotype.Component;
 public class ValuePowerRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
-        
+
+    }
+
+    class Algorithm{
+        double calc(double base,int exponent){
+
+            return 0.0;
+        }
     }
 }
