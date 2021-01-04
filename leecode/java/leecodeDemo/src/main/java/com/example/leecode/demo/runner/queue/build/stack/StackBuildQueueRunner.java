@@ -37,16 +37,17 @@ public class StackBuildQueueRunner implements CommandLineRunner {
         }
 
         T take(){
-            if (!s2.empty()){
-                return s2.pop();
-            }else if (!s1.empty()){
-                while (!s1.empty()){
+            if (s2.isEmpty()){
+                while (!s1.isEmpty()){
                     s2.push(s1.pop());
                 }
-                return s2.pop();
-            }else {
+            }
+
+            if (s2.isEmpty()){
                 return null;
             }
+            return s2.pop();
+
         }
 
     }
