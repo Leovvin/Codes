@@ -26,7 +26,7 @@ drop table if exist tb_order;
 create table tb_order (
     order_id int(10) not NULL AUTO_INCREMENT ,
     product_id int(10) not null,
-    guest_id int(10) not null,
+    user_id int(10) not null,
     amount int(10) not null DEFAULT 0,
     status int(5) not NULL DEFAULT 0,
     create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,

@@ -6,12 +6,14 @@ import com.example.demo.mall.model.Inventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//@Component
+@Component
+@ConditionalOnProperty(name = "runner",havingValue = "inventoryLT")
 public class CommandRunner implements CommandLineRunner {
 
     @Autowired
@@ -34,7 +36,7 @@ public class CommandRunner implements CommandLineRunner {
         @Override
         public void run() {
             while (true){
-                boolean decreaseSucc = inventoryService.decreaseStockForUpdate(1l,1);
+                boolean decreaseSucc = inventoryService.increaseStock(1l,1);
                 if (!decreaseSucc){
                     break;
                 }
