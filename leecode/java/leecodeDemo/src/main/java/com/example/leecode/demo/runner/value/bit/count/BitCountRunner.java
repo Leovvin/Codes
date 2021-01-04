@@ -1,4 +1,4 @@
-package com.example.leecode.demo.runner.bit.count;
+package com.example.leecode.demo.runner.value.bit.count;
 
 import com.google.common.collect.Lists;
 import org.springframework.boot.CommandLineRunner;
