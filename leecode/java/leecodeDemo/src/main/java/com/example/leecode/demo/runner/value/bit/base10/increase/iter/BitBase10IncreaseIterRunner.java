@@ -1,4 +1,4 @@
-package com.example.leecode.demo.runner.value.bit.base10.increase;
+package com.example.leecode.demo.runner.value.bit.base10.increase.iter;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConditionalOnProperty(name = "runner",havingValue = "bitBase10Increase")
-public class BitBase10IncreaseRunner implements CommandLineRunner {
+public class BitBase10IncreaseIterRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         int n = 3;
