@@ -4,6 +4,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+/**
+ * 题目：
+ * 输入数字n,按顺序打印出从1到最大的n位十进制数，比如输入3则打印出1，2，3直到999
+ */
+
 @Component
 @ConditionalOnProperty(name = "runner",havingValue = "bitBase10Increase")
 public class BitBase10IncreaseIterRunner implements CommandLineRunner {

@@ -1,6 +1,5 @@
 package com.example.treeJava.model;
 
-import javax.xml.soap.Node;
 import java.util.Objects;
 
 public class RBTree<T extends Comparable> extends BinarySearchTree<T> {
