@@ -4,3 +4,4 @@ test
 *.o
 *.exe
 *.swp
+*.DS_Store
